@@ -1,0 +1,25 @@
+Stop!
+Intruders!
+1
+120
+000
+Axel!
+
+1
+120
+907
+I know!
+
+1
+120
+912
+Back-to-Back!
+
+1
+120
+913
+That's right!
+
+0
+120
+908

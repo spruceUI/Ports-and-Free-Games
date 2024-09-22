@@ -1,0 +1,35 @@
+
+
+1
+240
+984
+Consider this your 
+LAST RIDE!
+1
+240
+983
+???
+
+1
+180
+912
+Hey!
+
+1
+180
+908
+HQ! You didn't warn us 
+about THIS!
+1
+240
+913
+I don't have any
+information on them!
+1
+240
+999
+TAKE THEM DOWN!
+
+0
+180
+999
