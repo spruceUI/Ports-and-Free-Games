@@ -1,0 +1,36 @@
+name: Clean Release ZIP
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  remove_files:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Remove unwanted files
+      run: |
+        zip_file="release.zip"
+        mkdir temp
+        cp -r . temp/
+        # ADD HERE ALL FILES YOU WANT TO EXCLUDE! for example:
+        # "rm -f path/of/file/or/folder/to/exclude" EXCLUDES A FILE/FOLDER
+        # "find temp -name '*.txt' -type f -delete" EXCLUDES ALL FILES WITH A GIVEN EXTENSIONS
+        find temp -name '*.md' -type f -delete
+        rm -rf temp/.github
+        cd temp
+        zip -r ../$zip_file .
+        cd ..
+
+    - name: Upload cleaned ZIP to release
+      uses: actions/upload-release-asset@v1
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        release_id: ${{ github.event.release.id }}
+        asset_path: ./release.zip
+        asset_name: cleaned_release.zip
+        asset_content_type: application/zip
