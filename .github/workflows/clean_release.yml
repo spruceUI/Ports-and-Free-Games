@@ -16,7 +16,8 @@ jobs:
       run: |
         zip_file="release.zip"
         mkdir temp
-        cp -r . temp/
+        # Usa rsync per copiare la directory senza includere la cartella temporanea stessa
+        rsync -av --exclude=temp . temp/
         # Rimuovi i file specificati in .github/exclude.txt
         while IFS= read -r pattern; do
           if [[ "$pattern" == *"*"* ]]; then
