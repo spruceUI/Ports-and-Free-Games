@@ -1,4 +1,4 @@
-name: Create Release
+name: Create Cleaned Release
 
 on:
   release:
@@ -9,66 +9,53 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-      - name: Set up environment
-        run: |
-          mkdir temp
-          cp -r . temp/
-
-      - name: Remove excluded files
-        run: |
-          while IFS= read -r pattern; do
-            if [[ "$pattern" == *"*"* ]]; then
-              find temp -name "$pattern" -exec rm -rf {} +
-            else
-              rm -rf temp/$pattern
-            fi
-          done < .github/exclude.txt
-
-      - name: Debug file sizes
-        run: |
-          echo "File size of release.zip before zipping: $(du -sh temp | cut -f1)"
-
-      - name: Zip files
-        run: |
-          cd temp
-          zip -r ../release.zip .
-          cd ..
-
-      - name: Check file size
-        run: |
-          FILE_SIZE=$(stat -c%s "./release.zip")
-          MAX_SIZE=$((2 * 1024 * 1024 * 1024)) # 2 GiB in bytes
-          echo "File size of release.zip: $FILE_SIZE bytes"
-          if [ "$FILE_SIZE" -gt "$MAX_SIZE" ]; then
-            echo "Error: File size ($FILE_SIZE) exceeds the maximum allowed size of 2 GiB."
-            exit 1
+    - name: Remove files and folders listed in .github/exclude.txt
+      run: |
+        zip_file="release.zip"
+        mkdir temp
+        rsync -av --exclude=temp . temp/
+        while IFS= read -r pattern; do
+          if [[ "$pattern" == *"*"* ]]; then
+            find temp -name "$pattern" -exec rm -rf {} +
+          else
+            rm -rf temp/$pattern
           fi
+        done < .github/exclude.txt
+        cd temp
+        zip -r ../$zip_file .
+        cd ..
 
-      - name: Get release upload URL
-        id: get_release
-        uses: actions/github-script@v5
-        with:
-          script: |
-            const release = await github.rest.repos.getReleaseByTag({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              tag: context.payload.release.tag_name
-            });
-            // Rimuove "{?name,label}" dall'URL e imposta come output
-            return release.data.upload_url.split('{')[0];
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+    # Debug operations
+    - name: List files in temp directory
+      run: |
+        echo "Files in temp directory:"
+        ls -la temp/
 
-      - name: Debug upload URL
-        run: |
-          echo "Upload URL: ${{ steps.get_release.outputs.upload_url }}"
+    - name: List contents of the zip file
+      run: |
+        echo "Contents of release.zip:"
+        unzip -l release.zip
 
-      - name: Upload release asset
-        uses: actions/upload-release-asset@v1
-        with:
-          upload_url: ${{ steps.get_release.outputs.upload_url }}
-          asset_path: ./release.zip
-          asset_name: cleaned_release.zip
-          asset_content_type: application/zip
+    - name: Get release upload URL
+      id: get_release
+      uses: actions/github-script@v5
+      with:
+        script: |
+          const release = await github.rest.repos.getReleaseByTag({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            tag: context.payload.release.tag_name
+          });
+          // Remove "{?name,label}" from url and set as output
+          core.setOutput('upload_url', release.data.upload_url.split('{')[0]);
+
+    - name: Upload release asset
+      uses: actions/upload-release-asset@v1
+      with:
+        upload_url: ${{ steps.get_release.outputs.upload_url }}
+        asset_path: ./release.zip
+        asset_name: cleaned_release.zip
+        asset_content_type: application/zip
