@@ -1,24 +1,22 @@
-name: Clean Release ZIP
+name: Create Cleaned Release
 
 on:
   release:
-    types: [published]
+    types: [created]
 
 jobs:
-  remove_files:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
+    - name: Checkout code
+      uses: actions/checkout@v2
 
     - name: Remove files and folders listed in .github/exclude.txt
       run: |
         zip_file="release.zip"
         mkdir temp
-        # Usa rsync per copiare la directory senza includere la cartella temporanea stessa
         rsync -av --exclude=temp . temp/
-        # Rimuovi i file specificati in .github/exclude.txt
         while IFS= read -r pattern; do
           if [[ "$pattern" == *"*"* ]]; then
             find temp -name "$pattern" -exec rm -rf {} +
@@ -30,11 +28,22 @@ jobs:
         zip -r ../$zip_file .
         cd ..
 
-    - name: Upload cleaned ZIP to release
+    - name: Get release upload URL
+      id: get_release
+      uses: actions/github-script@v5
+      with:
+        script: |
+          const release = await github.rest.repos.getReleaseByTag({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            tag: context.payload.release.tag_name
+          });
+          return release.data.upload_url;
+
+    - name: Upload release asset
       uses: actions/upload-release-asset@v1
       with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        release_id: ${{ github.event.release.id }}
+        upload_url: ${{ steps.get_release.outputs.upload_url }}
         asset_path: ./release.zip
         asset_name: cleaned_release.zip
         asset_content_type: application/zip
