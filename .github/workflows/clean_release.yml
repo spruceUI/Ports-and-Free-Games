@@ -38,7 +38,8 @@ jobs:
             repo: context.repo.repo,
             tag: context.payload.release.tag_name
           });
-          return release.data.upload_url;
+          // Rimuove "{?name,label}" dall'URL
+          return release.data.upload_url.split('{')[0];
 
     - name: Upload release asset
       uses: actions/upload-release-asset@v1
