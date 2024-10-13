@@ -12,16 +12,19 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
 
-    - name: Remove unwanted files
+    - name: Remove files and folders listed in .github/exclude.txt
       run: |
         zip_file="release.zip"
         mkdir temp
         cp -r . temp/
-        # ADD HERE ALL FILES YOU WANT TO EXCLUDE! for example:
-        # "rm -f path/of/file/or/folder/to/exclude" EXCLUDES A FILE/FOLDER
-        # "find temp -name '*.txt' -type f -delete" EXCLUDES ALL FILES WITH A GIVEN EXTENSIONS
-        find temp -name '*.md' -type f -delete
-        rm -rf temp/.github
+        # Rimuovi i file specificati in .github/exclude.txt
+        while IFS= read -r pattern; do
+          if [[ "$pattern" == *"*"* ]]; then
+            find temp -name "$pattern" -exec rm -rf {} +
+          else
+            rm -rf temp/$pattern
+          fi
+        done < .github/exclude.txt
         cd temp
         zip -r ../$zip_file .
         cd ..
