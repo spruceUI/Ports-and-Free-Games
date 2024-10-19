@@ -1,0 +1,58 @@
+O.K...
+
+1
+120
+907
+Where's Antonio? 
+
+1
+120
+907 
+ADAM!
+BEHIND YOU!
+1
+180
+913
+!
+
+1
+120
+908
+HQ, 
+Stone here.
+1
+120
+912
+Go ahead, Stone.
+
+1
+120
+999
+We've located Antonio.
+
+1
+120
+912
+Great.
+
+1
+120
+999
+Take him down.
+
+1
+120
+999
+Got it.
+
+1
+120
+912
+We're on standby.
+
+0
+120
+999
+
+
+

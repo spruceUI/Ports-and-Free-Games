@@ -1,0 +1,45 @@
+...
+
+1
+240
+000
+I wonder how many trucks
+we'll have to do...
+1
+180
+907
+I don't know, but we'll
+make our move soon...
+1
+180
+912
+Soon ain't fast enough
+for me...
+1
+180
+907
+...
+
+1
+240
+000
+They're leaving!
+
+1
+120
+907
+Now's our chance!
+
+1
+120
+907
+To the other truck!
+
+1
+120
+912
+Let's go!
+
+0
+240
+912

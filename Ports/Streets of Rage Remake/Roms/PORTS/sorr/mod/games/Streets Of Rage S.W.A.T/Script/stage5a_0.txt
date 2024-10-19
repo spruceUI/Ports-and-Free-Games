@@ -1,0 +1,51 @@
+I don't see any 
+henchmen yet...
+1
+180
+912
+Axel,
+LOOK OUT!
+1
+120
+908
+What the?
+Hq...
+1
+180
+912
+Yes, Stone.
+
+1
+120
+999
+We have a
+problem...
+1
+180
+912
+They have guys
+dropping from a plane!
+1
+180
+913
+Don't worry, Hq
+
+1
+120
+907
+We've got this.
+
+1
+120
+907
+Good to know that,
+Hunter.
+1
+180
+999
+We'll be here all
+the way for support.
+0
+180
+999
+

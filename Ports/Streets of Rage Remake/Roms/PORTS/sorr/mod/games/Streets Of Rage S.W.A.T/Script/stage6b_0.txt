@@ -1,0 +1,40 @@
+Pretty creepy route
+for a trucker...
+1
+180
+912
+And it's foggy too.
+
+1
+180
+907
+HQ, you still there?
+
+1
+120
+907
+We're still here,
+Hunter.
+1
+180
+999
+The fog's a little 
+thick but we'll make it.
+1
+180
+999
+Watch your six down
+there, guys.
+1
+180
+999
+Got it.
+
+1
+120
+907
+HQ out.
+
+0
+120
+999

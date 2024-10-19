@@ -5,5 +5,4 @@ RA_DIR="/mnt/SDCARD/RetroArch"
 CORE_DIR="$RA_DIR/.retroarch/cores"
 
 cd "$RA_DIR"
-
-./retroarch -v -L "$CORE_DIR/gong_libretro.so" # | tee "$ROM_DIR/gong.log"
+./retroarch -v -L "$CORE_DIR/gong_libretro.so"

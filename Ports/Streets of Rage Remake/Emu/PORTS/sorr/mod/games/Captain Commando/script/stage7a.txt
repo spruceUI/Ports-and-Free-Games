@@ -1,5 +1,0 @@
-Nivel 8 - Nave espacial
-enemiga.
-0
-250
-000

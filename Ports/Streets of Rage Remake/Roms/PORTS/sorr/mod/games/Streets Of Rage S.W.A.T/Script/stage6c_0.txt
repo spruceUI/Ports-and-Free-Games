@@ -1,0 +1,30 @@
+Our signal's fading...
+
+1
+120
+999
+You must be getting 
+closer.
+1
+180
+999
+We're some odd
+steps away.
+1
+180
+912
+O.K, we'll use our
+visual until you
+1
+180
+999
+Enter the compound.
+
+1
+180
+999
+HQ out.
+
+0
+120
+999
