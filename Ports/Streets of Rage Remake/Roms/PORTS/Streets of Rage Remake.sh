@@ -1,4 +1,4 @@
 #!/bin/sh
 
 cd $(dirname "$0")
-/mnt/SDCARD/Roms/PORTS/sorr/launch.sh
+/mnt/SDCARD/Roms/PORTS/sorr/launch
