@@ -1,0 +1,8 @@
+Tobu Tobu Girl is a fun and challenging arcade platformer developed by Tangram Games featuring an original soundtrack by potato-tan.
+
+Tobu Tobu Girl Deluxe is a new and enhanced version of the original featuring improved, full-color graphics and is fully compatible with the Game Boy, Game Boy Color, and Super Game Boy.
+
+https://tangramgames.itch.io/tobu-tobu-girl-deluxe
+
+Source code available under the MIT license, assets are licensed under CC-BY-4.0
+https://github.com/SimonLarsen/tobutobugirl-dx
