@@ -1,4 +1,4 @@
 #!/bin/sh
 
-cd /mnt/SDCARD/Roms/PORTS/planetmerge
+cd "$(dirname "$0")/planetmerge"
 XDG_CONFIG_HOME=/mnt/SDCARD/Saves/ ./planets
