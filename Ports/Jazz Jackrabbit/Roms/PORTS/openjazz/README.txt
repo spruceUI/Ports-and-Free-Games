@@ -1,1 +1,1 @@
-This port contains Jazz Jackrabbit v1.1 and Holiday Hare shareware files. To play the full game, copy the full game files from Jazz Jackrabbit v1.1 into the jazz11 directory
+This port contains Jazz Jackrabbit v1.1 and Holiday Hare shareware files. To play the full game, copy the full game files from the GOG release of Jazz Jackrabbit into the 'jazz' directory
