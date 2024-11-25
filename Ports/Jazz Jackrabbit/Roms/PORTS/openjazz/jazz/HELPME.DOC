@@ -1,5 +1,5 @@
 =============================================================================
-Jazz Jackrabbit   *   Instructions & Troubleshooting Info    *    Version 1.1
+Jazz Jackrabbit   *   Instructions & Troubleshooting Info    *    Version 1.3
 =============================================================================
 
 To play Jazz, you'll need at least:
@@ -138,10 +138,6 @@ Solution: This means that either (1) Jazz is conflicting with your memory
    managers and TSR's,  or (2) you need more free memory to run Jazz.
    Try booting clean and running Jazz.
 
-   Several customers have reported "Runtime Errors" when running Jazz with
-   QEMM or EMM386.  We haven't been able to duplicate this problem or
-   figure out its cause, but booting clean has always solved it.
-
 -----------------------------------------------------------------------------
 PROBLEM: When I run JAZZ,  the computer locks up or reboots.
 
@@ -169,7 +165,18 @@ SOLUTION:  Run SETUP and verify that your settings are correct.  If you are
    drivers that you have loaded.  Try booting your computer clean and then
    running Jazz (see above for details).
 
+   * QEMM USERS:  There is a known conflict with Jazz and QEMM which commonly
+   results in lockups.  Disabling QEMM's DPMI server sometimes resolves this 
+   conflict.  To disable QEMM's DPMI server in most versions of QEMM, type the
+   following at the QEMM subdirectory:
+	
+	QDPMI OFF
+
+   If disabling the DPMI server does not resolve the conflict, then bypass
+   QEMM entirely at the startup by booting clean.
+
 -----------------------------------------------------------------------------
+
 PROBLEM: The game runs unevenly on my computer, sometimes speeding up and
    slowing down.
 
@@ -241,6 +248,16 @@ Solution: This is what can happen when Cliff makes a mistake designing the
    to pause the game, press the "Backspace" key, then type the word "DDMARK".
    (Hint: There are other secret cheat codes that can be activated with
    the P-Backspace combination!)
+									     
+
+-----------------------------------------------------------------------------
+Problem: The opening screens look normal, but when I try to play Jazz my video 
+display is a narrow horizontal band.
+
+Solution: Jazz has a VGA switch that can be used to change video modes and 
+solve this problem.  When you start Jazz, type the following to use the other
+video mode:    Jazz VGA
+
 
 =============================================================================
 OTHER SOUND CARD NOTES
@@ -290,6 +307,15 @@ Other sound cards:
    Blaster compatible card.  If your sound card isn't 100% compatible with
    the Sound Blaster, unfortunately it's not going to work with Jazz.
 
+   Here are some sound cards that usually do not work with Jazz Jackrabbit:
+
+	Ensoniq Soundscape
+	Reveal Wave 32
+
+   The Epic team is currently working on making Jazz compatable with these       
+   sound cards.
+
+
 =============================================================================
 VERSION HISTORY
 =============================================================================
@@ -300,24 +326,37 @@ Version 1.1 (8/15/94): Update and bug fixes.
    * Fixed a problem that made some computers freeze in the "Loading" screen.
    * Renamed many secret cheat codes.  They're still in there, with new names.
 
+Version 1.2: First CD-ROM version.
+   * New video drivers/switches
+   
+Version 1.3: Jazz Jackrabbit Special Christmas Edition.
+
 =============================================================================
 CONTACTING EPIC'S TECH SUPPORT
 =============================================================================
 
 If you need further assistance, please call our tech support department
 at 301-983-9771 between 9AM and 5PM Eastern Standard Time,  or fax us
-at 301-299-3841.
-
-If you have a complex question about how to run this game, please call while
-you're at your computer and we'll be able to help you more effectively.
-
-You can also contact us online:
+at 301-299-3841.  You can also contact us online:
 
 CompuServe:     GO EPIC
-Internet Mail:  70007.1631@compuserve.com
+Internet Mail:  help@epicgames.com
 Internet FTP:   ftp.uml.edu
-America Online: We answer questions posted in the "Games" area.
-GEnie:          We answer questions in the Games Roundtable.
+Internet News:  We answer questions in comp.sys.ibm.pc.games.action
+WorldWide Web:  http://www.epicgames.com/
+America Online: We answer questions posted in the "Games" area
+GEnie:          We answer questions in the Games Roundtable
+
+EXEC-PC BBS
+   Contact:     Epic MegaGames
+   2400 Baud:   414-789-4210
+   14.4K Baud:  414-789-4360
+   
+Epic's Email list:
+   
+   To subscribe to Epic's email list and receive late-breaking news 
+from Epic every month or so, just send an Internet message to
+list@epicgames.com with the subject: SUBSCRIBE EPIC.
 
 =============================================================================
 		That's all.  Enjoy playing Jazz Jackrabbit!
