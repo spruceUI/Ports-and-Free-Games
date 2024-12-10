@@ -1,0 +1,9 @@
+{
+  "display": "L'Abbaye des Morts",
+  "file": "L'Abbaye des Morts.sh",
+  "system": "PORTS",
+  "url": "",
+  "description": "Discover dark secrets hidden within an abandoned abbey, in ZX-Spectrum style",
+  "requires_files": false,
+  "version": "1.0.0"
+}
