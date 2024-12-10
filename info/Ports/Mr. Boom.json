@@ -1,0 +1,9 @@
+{
+  "display": "Mr. Boom",
+  "file": "Mr. Boom.sh",
+  "system": "PORTS",
+  "url": "",
+  "description": "Duke it out with up to 8 players in this open source Bomberman clone.",
+  "requires_files": false,
+  "version": "0.0.0"
+}

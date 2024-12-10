@@ -1,0 +1,9 @@
+{
+  "display": "Dino Jump",
+  "file": "Dino Jump.sh",
+  "system": "PORTS",
+  "url": "",
+  "description": "Take on the role of a tiny dino running endlessly through the city.",
+  "requires_files": false,
+  "version": "0.0.0"
+}

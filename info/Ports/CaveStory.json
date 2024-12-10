@@ -1,0 +1,9 @@
+{
+  "display": "CaveStory (nxengine)",
+  "file": "CaveStory.sh",
+  "system": "PORTS",
+  "url": "",
+  "description": "Side scrolling adventure platformer.",
+  "requires_files": false,
+  "version": "0.0.0"
+}

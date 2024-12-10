@@ -1,0 +1,9 @@
+{
+  "display": "Pong (Gong)",
+  "file": "Pong.sh",
+  "system": "PORTS",
+  "url": "",
+  "description": "Relive the gaming's heyday, when great design only took two paddles and a ball.",
+  "requires_files": false,
+  "version": "0.0.0"
+}
