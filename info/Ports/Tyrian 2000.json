@@ -1,0 +1,9 @@
+{
+  "display": "Tyrian 2000",
+  "file": "Tyrian 2000.sh",
+  "system": "PORTS",
+  "url": "",
+  "description": "A sci-fi shmup that pits you against the MicroSol megacorp",
+  "requires_files": false,
+  "version": "1.0.0"
+}
