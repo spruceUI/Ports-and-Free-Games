@@ -1,0 +1,9 @@
+{
+  "display": "nKaruga",
+  "file": "nKaruga.sh",
+  "system": "PORTS",
+  "url": "",
+  "description": "A faithful demake of Treasure's acclaimed polarity-based shooter Ikaruga",
+  "requires_files": false,
+  "version": "1.0.0"
+}

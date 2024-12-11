@@ -1,17 +1,15 @@
 #!/bin/sh
 
 ROM_DIR="$(dirname "$0")"
-HCL_DIR="$ROM_DIR/hydracastlelabyrinth"
+GAME_DIR="$ROM_DIR/opentyrian2000"
+export XDG_CONFIG_HOME="$ROM_DIR"
 
-export HOME="$HCL_DIR"
-export LD_LIBRARY_PATH="/mnt/SDCARD/miyoo/lib:$LD_LIBRARY_PATH"
-
-cd "$HCL_DIR"
+cd "$GAME_DIR"
 
 # set stick to d-pad mode
 killall -q -USR2 joystickinput
 
-./hcl
+./opentyrian2000 -t "gamedata" -j
 
 # set stick to analog mode
 killall -q -USR1 joystickinput
