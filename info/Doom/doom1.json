@@ -1,0 +1,9 @@
+{
+  "display": "Doom (Shareware)",
+  "file": "doom1.wad",
+  "system": "DOOM",
+  "url": "",
+  "description": "Knee Deep in the Dead - the first 9 levels of the classic boomer shooter.",
+  "requires_files": false,
+  "version": "1.9.0"
+}

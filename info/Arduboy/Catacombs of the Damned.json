@@ -1,0 +1,9 @@
+{
+  "display": "Catacombs of the Damned",
+  "file": "Catacombs of the Damned.hex",
+  "system": "ARDUBOY",
+  "url": "",
+  "description": "An impressive 3D dungeon crawler by James Howard.",
+  "requires_files": false,
+  "version": "0.0.0"
+}

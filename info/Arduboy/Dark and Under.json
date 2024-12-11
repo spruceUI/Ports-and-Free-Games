@@ -1,0 +1,9 @@
+{
+  "display": "Dark and Under",
+  "file": "Dark and Under.hex",
+  "system": "ARDUBOY",
+  "url": "",
+  "description": "A stylish and strategic turn-based dungeon crawler.",
+  "requires_files": false,
+  "version": "0.0.0"
+}

@@ -1,0 +1,9 @@
+{
+  "display": "Freedoom: Phase 1",
+  "file": "freedoom1.wad",
+  "system": "DOOM",
+  "url": "",
+  "description": "Blast your way through 4 episodes of 9 levels each.",
+  "requires_files": false,
+  "version": "0.13.0"
+}
