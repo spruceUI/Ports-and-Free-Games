@@ -1,0 +1,49 @@
+
+ + CREDITS +
+ -----------
+
+ -= Tools used =-
+
+Engine:    RPG Maker 2003 - http://www.rpgmakerweb.com/
+Pixel Art: Aseprite - http://www.rpgmakerweb.com/
+           Easy Paint Tool SAI - http://systemax.jp/en/sai/
+Notes:     CherryTree - http://www.giuspen.com/cherrytree/
+
+
+
+ -= Graphics, Writing, Eventing =-
+
+Clockwork Prince
+
+
+
+ -= Music =-
+
+Kevin MacLeod - http://www.incompetech.com/
+Mary (*CAMeLIA*) - http://agnello-pecora.chu.jp/CAMeLIA/
+Myuu - http://www.thedarkpiano.com/
+Peritune - http://www.peritune.com/
+Presence Of Music - http://www.presence-of-music.com/
+
+
+
+ -= Sound Effects =-
+
+FreeSound.org (various users) - http://www.freesound.org/
+
+
+
+ -= Playtesting =-
+
+DripDrops
+FlareBlitzed
+IsaWP
+Phi
+
+
+
+ -= Special Thanks =-
+
+Bleet
+Enelvon
+Rastek

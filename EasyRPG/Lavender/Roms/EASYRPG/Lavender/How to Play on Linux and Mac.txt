@@ -1,0 +1,21 @@
+﻿
+ -= HOW TO PLAY ON LINUX AND MAC =-
+ ----------------------------------
+
+Lavender has mainly been created and tested on Windows 7. 
+However, playing it on Linux and Mac is definitely possible. 
+
+Sadly, there is no way to do it without downloading other software. 
+
+
+The following software can be used: 
+
+ - Wine: https://www.winehq.org/
+ - EasyRPG: https://github.com/Rinnegatamante/Player
+ - RPGHub: https://rpgmaker.net/games/7635/
+
+
+Using these comes with no warranties and no support from me, 
+as it is not possible for me to test them and investigate any problems. 
+However, they should run the game just fine. 
+

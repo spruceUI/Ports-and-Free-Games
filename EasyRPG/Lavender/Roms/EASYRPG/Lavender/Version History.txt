@@ -1,0 +1,33 @@
+
+ + VERSION HISTORY +
+ -------------------
+
+v1.05:	- Fixed a book description on the "Bastion" Floor.
+	- Added a translation kit to aid translators.
+
+v1.04:	- Fixed a duplicate items bug. 
+	- Fixed a wrong textbox colour on the "Beginning" Floor.
+	- Deleted the duplicate RPG_RT.exe file that didn't contain edited glyphs. 
+	- Added information that was missing from a book in the Bonus Room.
+
+v1.03:  - Audio balancing.
+	- Added descriptions to the statues on the "Beginning" floor.
+	- Tried fixing the puzzle on the "Plea" floor.
+	- The "Extra" titlescreen option password is no longer case sensitive.
+	- Made obtaining certain items more consistent. 
+
+v1.02:  - Added a bonus room. (Choose "Extra" in the titlescreen.)
+	- Overhauled the titlescreen.
+	- Fixed missing footsteps in some areas.
+	- Audio balancing. 
+	- Edited the books about chess.
+	- Added an easter egg.
+
+v1.01:  - Changed one map somewhat to fix a continuity error.
+	- Added more detail to another map.
+	- Added a bookcase to the floor with the "Future" painting to help with 
+          that floor's puzzle.
+	- Some spelling corrections.
+	- Removed debug features access. (Pressing shift now does nothing.)
+
+v1.00:  - Initial complete release

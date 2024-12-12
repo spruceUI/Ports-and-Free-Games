@@ -1,0 +1,20 @@
+-= Credits =-
+
+Game design and story by Tony Michael Head
+
+GFX
+3D Backgrounds by Tony Michael Head
+
+Sprites made with Charas Generator
+http://www.charas-project.net/
+
+Additional GFX by
+©Gotcha Gotcha Games Inc./YOJI OJIMA 2020
+
+Music by 
+© 2022, Mt. Berkoo. All Rights Reserved.
+https://mt-berkoo.itch.io/80s-synthwave-horror-synth-soundtrack-fright-at-dusk
+
+Other music and SFX by ©Gotcha Gotcha Games Inc./YOJI OJIMA 2020
+
+Inspiration - the RPG Maker Community!
