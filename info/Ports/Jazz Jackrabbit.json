@@ -1,0 +1,9 @@
+{
+  "display": "Jazz Jackrabbit",
+  "file": "Jazz Jackrabbit.sh",
+  "system": "PORTS",
+  "url": "https://github.com/spruceUI/Ports-and-Free-Games/releases/download/Singles/Jazz.Jackrabbit.7z",
+  "description": "Control the eponymous Jazz in this sci-fi parody of the tortoise and the hare.",
+  "requires_files": false,
+  "version": "0.0.0"
+}

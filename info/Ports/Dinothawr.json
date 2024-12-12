@@ -2,7 +2,7 @@
   "display": "Dinothawr",
   "file": "Dinothawr.sh",
   "system": "PORTS",
-  "url": "",
+  "url": "https://github.com/spruceUI/Ports-and-Free-Games/releases/download/Singles/Dinothawr.7z",
   "description": "Solve block puzzles to thaw your dino brethren in this Sokoban-like puzzler.",
   "requires_files": false,
   "version": "0.0.0"
