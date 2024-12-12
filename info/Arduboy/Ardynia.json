@@ -2,7 +2,7 @@
   "display": "Ardynia",
   "file": "Ardynia.hex",
   "system": "ARDUBOY",
-  "url": "",
+  "url": "https://github.com/spruceUI/Ports-and-Free-Games/releases/download/Arduboy/Ardynia.7z",
   "description": "Explore caves and slay slimes and skeletons in this top-down adventure by Matt Greer!",
   "requires_files": false,
   "version": "0.0.0"
