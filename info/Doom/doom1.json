@@ -2,7 +2,7 @@
   "display": "Doom (Shareware)",
   "file": "doom1.wad",
   "system": "DOOM",
-  "url": "",
+  "url": "https://github.com/spruceUI/Ports-and-Free-Games/releases/download/Singles/Doom1.7z",
   "description": "Knee Deep in the Dead - the first 9 levels of the classic boomer shooter.",
   "requires_files": false,
   "version": "1.9.0"
