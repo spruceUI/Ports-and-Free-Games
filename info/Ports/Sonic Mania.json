@@ -1,0 +1,9 @@
+{
+  "display": "Sonic Mania",
+  "file": "Sonic Mania.sh",
+  "system": "PORTS",
+  "url": "https://github.com/spruceUI/Ports-and-Free-Games/releases/download/Singles/Sonic.Mania.7z",
+  "description": "Join Sonic and friends in this throwback platformer with levels old and new",
+  "requires_files": true,
+  "version": "0.0.0"
+}
