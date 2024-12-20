@@ -4,7 +4,7 @@
   "file": "",
   "system": "COMMODORE",
   "url": "",
-  "description": "",
+  "description": "control Mario working in cement factory, that has to make sure the cement carried from the top of the screen reaches one of the two concrete mixers",
   "requires_files": false,
   "version": "0.0.0"
 }
