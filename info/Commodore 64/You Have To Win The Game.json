@@ -1,7 +1,7 @@
 {
-  "display": "",
-  "shortname": "",
-  "file": "",
+  "display": "You Have To Win The Game",
+  "shortname": "YHTWTG",
+  "file": "You Have To Win The Game.prg",
   "system": "COMMODORE",
   "url": "",
   "description": "an exploration platformer with a retro 1980s PC aesthetic. Run, jump, and avoid deadly pitfalls",

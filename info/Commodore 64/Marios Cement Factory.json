@@ -1,7 +1,7 @@
 {
-  "display": "",
-  "shortname": "",
-  "file": "",
+  "display": "Mario's Cement Factory",
+  "shortname": "Cement Factory",
+  "file": "Mario's Cement Factory.prg",
   "system": "COMMODORE",
   "url": "",
   "description": "control Mario working in cement factory, that has to make sure the cement carried from the top of the screen reaches one of the two concrete mixers",

@@ -1,7 +1,7 @@
 {
-  "display": "",
-  "shortname": "",
-  "file": "",
+  "display": "Automated Cave Explorer",
+  "shortname": "Cave Explorer",
+  "file": "Automated Cave Explorer.tap",
   "system": "ZXS",
   "url": "",
   "description": "an arcade labyrinth game in BoulderDash style",
