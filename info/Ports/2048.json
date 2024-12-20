@@ -1,5 +1,6 @@
 {
   "display": "2048",
+  "shortname": "",
   "file": "2048.sh",
   "system": "PORTS",
   "url": "https://github.com/spruceUI/Ports-and-Free-Games/releases/download/Singles/2048.7z",
