@@ -4,7 +4,7 @@
   "file": "",
   "system": "COMMODORE",
   "url": "",
-  "description": "",
+  "description": "control a small robot, use the fire button to activate jetpack, by holding down the fire button, the Robot flies higher. ",
   "requires_files": false,
   "version": "0.0.0"
 }
