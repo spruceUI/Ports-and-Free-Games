@@ -4,7 +4,7 @@
   "file": "Robot Jet Action.prg",
   "system": "COMMODORE",
   "url": "https://github.com/spruceUI/Ports-and-Free-Games/releases/download/Singles/Robot.Jet.Action.7z",
-  "description": "control a small robot, use the fire button to activate jetpack, by holding down the fire button, the Robot flies higher. ",
+  "description": "Use the fire button to activate your jetpack; by holding down the fire button, the Robot flies higher. ",
   "requires_files": false,
   "version": "0.0.0"
 }
