@@ -1,0 +1,11 @@
+# in-game 	controller
+left 	dpleft
+right 	dpright
+up 	dpup
+down 	dpdown
+jump 	a
+dash 	b
+save 	leftshoulder
+load 	rightshoulder
+exit 	guide
+pause 	start

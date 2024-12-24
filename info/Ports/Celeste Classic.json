@@ -1,0 +1,10 @@
+{
+  "display": "Celeste Classic",
+  "shortname": "Ccleste",
+  "file": "Celeste Classic.sh",
+  "system": "PORTS",
+  "url": "https://github.com/spruceUI/Ports-and-Free-Games/releases/download/Singles/Celeste.Classic.7z",
+  "description": "A source port of the acclaimed Pico-8 platformer of the same name",
+  "requires_files": false,
+  "version": "0.0.0"
+}
