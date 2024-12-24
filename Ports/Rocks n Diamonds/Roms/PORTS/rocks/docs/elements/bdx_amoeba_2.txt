@@ -1,0 +1,3 @@
+The second variant of the amoeba behaves exactly like the first one.
+But it lives its own life. Sometimes, when they collide, they produce an
+explosion.

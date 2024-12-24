@@ -1,0 +1,2 @@
+Acts like ordinary wall, but is sloped: Elements like rocks or diamonds
+will roll off to the left or right.

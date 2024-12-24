@@ -1,0 +1,3 @@
+Whenever this is spawned into the level by any means, your remaining time
+to get to the exit goes down.
+The "gravestone" tile can be used as a purely visual version of this.

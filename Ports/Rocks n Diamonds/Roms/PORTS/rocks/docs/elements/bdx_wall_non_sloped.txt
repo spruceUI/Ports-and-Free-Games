@@ -1,0 +1,4 @@
+This is a non-sloped variant of normal wall.
+
+Unlike normal walls, objects
+that can fall will not slip off this wall to the left or to the right.

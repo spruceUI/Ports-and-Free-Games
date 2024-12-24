@@ -1,0 +1,2 @@
+This creature wanders around the cave like a guard, but you can touch it.
+If it is enclosed, it turns into a skeleton.

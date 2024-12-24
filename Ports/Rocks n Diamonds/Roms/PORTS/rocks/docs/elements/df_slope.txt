@@ -1,0 +1,1 @@
+Steel slopes reflect the laser beam similar to steel walls.

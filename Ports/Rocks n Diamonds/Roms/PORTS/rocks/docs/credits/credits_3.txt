@@ -1,0 +1,23 @@
+# .font: font.text_2
+Special thanks to
+
+# .font: font.text_3
+Michael Stopp & Philip Jespersen
+
+# .font: font.text_2
+for creating
+
+# .font: font.text_3
+"Supaplex"
+
+# .font: font.text_2
+in the year
+
+# .font: font.text_3
+1991
+
+# .font: font.text_2
+published by
+
+# .font: font.text_3
+Digital Integration

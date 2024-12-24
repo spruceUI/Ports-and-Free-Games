@@ -1,0 +1,2 @@
+This is a ghost which wanders aimlessly. If it touches you, it will explode
+in an x-shape to many different elements.

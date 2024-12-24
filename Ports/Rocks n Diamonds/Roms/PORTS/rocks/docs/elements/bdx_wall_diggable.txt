@@ -1,0 +1,1 @@
+Acts like ordinary wall, but you can dig it away.

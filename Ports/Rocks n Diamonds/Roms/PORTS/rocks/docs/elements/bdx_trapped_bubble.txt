@@ -1,0 +1,2 @@
+If there is space above it, the trapped bubble turns into a bubble that can move
+up and that can be pushed by the player.

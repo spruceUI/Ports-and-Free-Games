@@ -1,0 +1,5 @@
+This is a normal wall. It cannot be moved and cannot be passed by the player,
+but explosion will destroy it.
+
+Even though it may not look like that, objects that can fall will slip off this
+wall to the left or to the right.

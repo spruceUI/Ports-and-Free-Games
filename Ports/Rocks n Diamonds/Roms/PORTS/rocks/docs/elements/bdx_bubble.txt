@@ -1,0 +1,2 @@
+Bubbles can be pushed around easily. They slowly move up; if they touch a
+voodoo doll, they convert into clocks. They can also pass slime.

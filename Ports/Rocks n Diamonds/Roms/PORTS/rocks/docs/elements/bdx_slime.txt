@@ -1,0 +1,2 @@
+Slime is permeable. It means that rocks and diamonds laying on the slime can
+randomly pass through.

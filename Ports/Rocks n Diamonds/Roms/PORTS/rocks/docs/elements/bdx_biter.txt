@@ -1,0 +1,4 @@
+Biters will eat all the dirt they can reach. They move in a predictable way.
+They can also eat diamonds, so better don't let them be taken away. They will
+move through rocks throwing them behind if there is no space for turning. That
+way, you can get rid of rocks blocking your way.

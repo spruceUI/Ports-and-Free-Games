@@ -1,0 +1,2 @@
+With this switch you can change the direction of creatures, like guards and
+butterflies. Sometimes it works automatically.

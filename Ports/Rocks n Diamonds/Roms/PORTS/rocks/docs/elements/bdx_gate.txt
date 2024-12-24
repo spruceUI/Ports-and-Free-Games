@@ -1,0 +1,1 @@
+This is a door which can only be opened by the key of the same color.

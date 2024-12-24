@@ -1,0 +1,4 @@
+These creatures also guard the diamonds you would like to collect. But they
+move very differently. They like to run straight ahead, and only change
+direction if they bump into something. Like other enemies, you should not touch
+them. But you can easily crush them with rocks.

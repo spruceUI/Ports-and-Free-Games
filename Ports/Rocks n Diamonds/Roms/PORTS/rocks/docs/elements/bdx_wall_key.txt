@@ -1,0 +1,2 @@
+This is a key enclosed by a wall. Use the hammer to break this wall and get
+the key.

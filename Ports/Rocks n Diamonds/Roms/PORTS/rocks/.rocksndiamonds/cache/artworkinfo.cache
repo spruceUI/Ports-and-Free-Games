@@ -1,0 +1,15 @@
+program.version:                        4.4.0.0
+
+graphics.rnd_tutorial_ncrecc.CACHED:    true
+graphics.rnd_tutorial_ncrecc.TIMESTAMP_ARTWORKINFO:1734958542
+graphics.rnd_tutorial_ncrecc.TIMESTAMP_LEVELINFO:1734958542
+graphics.rnd_tutorial_ncrecc.author:    anonymous
+graphics.rnd_tutorial_ncrecc.basepath:  ./levels/Tutorials/rnd_tutorial_ncrecc/graphics
+graphics.rnd_tutorial_ncrecc.class_desc:Unknown Level Class
+graphics.rnd_tutorial_ncrecc.fullpath:  .
+graphics.rnd_tutorial_ncrecc.identifier:rnd_tutorial_ncrecc
+graphics.rnd_tutorial_ncrecc.in_user_dir:false
+graphics.rnd_tutorial_ncrecc.name:      Ncrecc's Tutorial - ncrtorial
+graphics.rnd_tutorial_ncrecc.name_sorting:Ncrecc's Tutorial - ncrtorial
+graphics.rnd_tutorial_ncrecc.sort_priority:20
+graphics.rnd_tutorial_ncrecc.subdir:    .

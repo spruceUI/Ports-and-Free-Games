@@ -1,0 +1,842 @@
+[BDCFF]
+Version=0.5
+[game]
+Name=Boulder Dash 1
+Author=Peter Liepa with Chris Gray
+Levels=5
+
+[cave]
+Name=Cave A: Intro
+Description=Pick up jewels and exit before time is up.
+Intermission=false
+IntermissionProperties.instantlife=true
+IntermissionProperties.rewardlife=false
+Size=40 22 0 0 39 21
+Colors=Black Black Orange Gray1 White White White
+DiamondsRequired=12 12 12 12 12
+DiamondValue=10 15
+CaveTime=150 110 70 40 30
+CaveScheduling=bd1
+PALTiming=true
+CaveDelay=12 6 3 1 0
+FrameTime=200 200 200 200 200
+RandSeed=10 11 12 13 14
+RandomFill=SPACE 60 BOULDER 50 DIAMOND 9 SPACE 0
+ActiveGuyIsFirst=false
+AmoebaTime=20 20 20 20 20
+MagicWallTime=20 20 20 20 20
+SlimePermeabilityC64=0 0 0 0 0
+AcidProperties=DUMMY 0.8314
+Effect=ACIDEffect ACID
+BorderProperties.lineshift=true
+BorderProperties.objectwraparound=true
+
+[objects]
+Line=1 7 30 7 WALL
+Line=9 14 38 14 WALL
+Point=3 2 INBOX
+Point=38 16 OUTBOX
+[/objects]
+[/cave]
+
+[cave]
+Name=Cave B: Rooms
+Description=Pick up jewels, but you must move boulders to get all jewels.
+Intermission=false
+IntermissionProperties.instantlife=true
+IntermissionProperties.rewardlife=false
+Size=40 22 0 0 39 21
+Colors=Black Black LightRed Purple White White White
+DiamondsRequired=10 12 9 13 10
+DiamondValue=20 50
+CaveTime=150 110 70 70 70
+CaveScheduling=bd1
+PALTiming=true
+CaveDelay=12 6 3 1 0
+FrameTime=200 200 200 200 200
+RandSeed=3 0 1 87 88
+RandomFill=SPACE 60 BOULDER 50 DIAMOND 9 FIREFLYl 2
+ActiveGuyIsFirst=false
+AmoebaTime=20 20 20 20 20
+MagicWallTime=20 20 20 20 20
+SlimePermeabilityC64=0 0 0 0 0
+AcidProperties=DUMMY 0.0000
+Effect=ACIDEffect ACID
+BorderProperties.lineshift=true
+BorderProperties.objectwraparound=true
+
+[objects]
+Line=1 6 38 6 WALL
+Line=1 13 38 13 WALL
+Line=8 1 8 20 WALL
+Line=16 1 16 20 WALL
+Line=24 1 24 20 WALL
+Line=32 1 32 20 WALL
+Line=1 3 38 3 SPACE
+Line=1 9 38 9 SPACE
+Line=1 16 38 16 SPACE
+Line=20 1 20 20 SPACE
+Point=18 19 INBOX
+Point=18 20 OUTBOX
+[/objects]
+[/cave]
+
+[cave]
+Name=Cave C: Maze
+Description= Pick up jewels. You must get every jewel to exit.
+Intermission=false
+IntermissionProperties.instantlife=true
+IntermissionProperties.rewardlife=false
+Size=40 22 0 0 39 21
+Colors=Black Black Brown Orange White White White
+DiamondsRequired=24 23 24 23 21
+DiamondValue=15 0
+CaveTime=150 100 90 80 70
+CaveScheduling=bd1
+PALTiming=true
+CaveDelay=12 6 3 1 0
+FrameTime=200 200 200 200 200
+RandSeed=0 50 54 52 55
+RandomFill=WALL 100 BOULDER 50 DIAMOND 9 SPACE 0
+ActiveGuyIsFirst=false
+MagicWallTime=0 0 0 0 0
+SlimePermeabilityC64=0 0 0 0 0
+AcidProperties=DIAMONDBIRTH5 0.0157
+Effect=ACIDEffect ACID
+BorderProperties.lineshift=true
+BorderProperties.objectwraparound=true
+
+[objects]
+Point=3 2 INBOX
+Point=39 18 OUTBOX
+[/objects]
+[/cave]
+
+[cave]
+Name=Cave D: Butterflies
+Description=Drop boulders on butterflies to create jewels.
+Intermission=false
+IntermissionProperties.instantlife=true
+IntermissionProperties.rewardlife=false
+Size=40 22 0 0 39 21
+Colors=Black Black Purple Orange White White White
+DiamondsRequired=36 36 36 36 36
+DiamondValue=5 20
+CaveTime=120 100 80 60 50
+CaveScheduling=bd1
+PALTiming=true
+CaveDelay=12 6 3 1 0
+FrameTime=200 200 200 200 200
+RandSeed=0 110 112 115 119
+RandomFill=BOULDER 20 SPACE 0 SPACE 0 SPACE 0
+ActiveGuyIsFirst=false
+AmoebaTime=20 20 20 20 20
+MagicWallTime=20 20 20 20 20
+SlimePermeabilityC64=0 0 0 0 0
+AcidProperties=DIAMOND 0.0000
+Effect=ACIDEffect ACID
+BorderProperties.lineshift=true
+BorderProperties.objectwraparound=true
+
+[objects]
+Point=1 1 INBOX
+Point=38 20 OUTBOX
+FillRect=8 8 11 11 DIRT SPACE
+Point=10 9 BUTTERFLYd
+FillRect=16 8 19 11 DIRT SPACE
+Point=18 9 BUTTERFLYd
+FillRect=24 8 27 11 DIRT SPACE
+Point=26 9 BUTTERFLYd
+FillRect=32 8 35 11 DIRT SPACE
+Point=34 9 BUTTERFLYd
+[/objects]
+[/cave]
+
+[cave]
+Name=Intermission 1
+Selectable=false
+Intermission=true
+IntermissionProperties.instantlife=true
+IntermissionProperties.rewardlife=false
+Size=40 22 0 0 19 11
+Colors=Black Black LightBlue Red White White White
+DiamondsRequired=6 6 6 6 6
+DiamondValue=30 0
+CaveTime=10 10 10 10 10
+CaveScheduling=bd1
+PALTiming=true
+CaveDelay=12 6 3 1 0
+FrameTime=200 200 200 200 200
+RandSeed=10 11 12 13 14
+RandomFill=SPACE 255 DIAMOND 9 SPACE 0 SPACE 0
+ActiveGuyIsFirst=false
+AmoebaTime=20 20 20 20 20
+MagicWallTime=20 20 20 20 20
+SlimePermeabilityC64=0 0 0 0 0
+AcidProperties=UNKNOWN 0.0000
+Effect=ACIDEffect ACID
+BorderProperties.lineshift=true
+BorderProperties.objectwraparound=true
+
+[objects]
+FillRect=0 0 39 21 STEELWALL
+FillRect=0 0 19 11 STEELWALL SPACE
+Point=10 10 BUTTERFLYu
+Point=10 2 BOULDER
+Point=10 3 DIRT
+Point=3 3 INBOX
+Point=18 10 OUTBOX
+[/objects]
+[/cave]
+
+[cave]
+Name=Cave E: Guards
+Description=The jewels are there for grapping, but they are guarded by the deadly fireflies.
+Intermission=false
+IntermissionProperties.instantlife=true
+IntermissionProperties.rewardlife=false
+Size=40 22 0 0 39 21
+Colors=Black Black Brown LightRed White White White
+DiamondsRequired=4 5 6 7 8
+DiamondValue=50 90
+CaveTime=150 120 90 60 30
+CaveScheduling=bd1
+PALTiming=true
+CaveDelay=12 6 3 1 0
+FrameTime=200 200 200 200 200
+RandSeed=0 0 0 0 0
+RandomFill=SPACE 0 SPACE 0 SPACE 0 SPACE 0
+ActiveGuyIsFirst=false
+AmoebaTime=20 20 20 20 20
+MagicWallTime=20 20 20 20 20
+SlimePermeabilityC64=0 0 0 0 0
+AcidProperties=SPACE 0.0000
+Effect=ACIDEffect ACID
+BorderProperties.lineshift=true
+BorderProperties.objectwraparound=true
+
+[objects]
+Point=1 1 INBOX
+Point=39 20 OUTBOX
+FillRect=8 8 10 10 SPACE
+FillRect=16 8 18 10 SPACE
+FillRect=24 8 26 10 SPACE
+FillRect=32 8 34 10 SPACE
+Point=9 10 DIAMOND
+Point=10 8 FIREFLYl
+Point=17 10 DIAMOND
+Point=18 8 FIREFLYl
+Point=25 10 DIAMOND
+Point=26 8 FIREFLYl
+Point=33 10 DIAMOND
+Point=34 8 FIREFLYl
+FillRect=8 14 10 16 SPACE
+FillRect=16 14 18 16 SPACE
+FillRect=24 14 26 16 SPACE
+FillRect=32 14 34 16 SPACE
+Point=9 16 DIAMOND
+Point=10 14 FIREFLYl
+Point=17 16 DIAMOND
+Point=18 14 FIREFLYl
+Point=25 16 DIAMOND
+Point=26 14 FIREFLYl
+Point=33 16 DIAMOND
+Point=34 14 FIREFLYl
+[/objects]
+[/cave]
+
+[cave]
+Name=Cave F: Firefly dens
+Description=Each firefly is guarding a jewel.
+Intermission=false
+IntermissionProperties.instantlife=true
+IntermissionProperties.rewardlife=false
+Size=40 22 0 0 39 21
+Colors=Black Black LightBlue LightRed White White White
+DiamondsRequired=4 6 7 8 8
+DiamondValue=40 60
+CaveTime=150 120 100 90 80
+CaveScheduling=bd1
+PALTiming=true
+CaveDelay=12 6 3 1 0
+FrameTime=200 200 200 200 200
+RandSeed=0 20 21 22 23
+RandomFill=BOULDER 50 SPACE 0 SPACE 0 SPACE 0
+ActiveGuyIsFirst=false
+AmoebaTime=20 20 20 20 20
+MagicWallTime=20 20 20 20 20
+SlimePermeabilityC64=0 0 0 0 0
+AcidProperties=BUTTERFLYu 0.0000
+Effect=ACIDEffect ACID
+BorderProperties.lineshift=true
+BorderProperties.objectwraparound=true
+
+[objects]
+FillRect=1 1 10 4 WALL SPACE
+FillRect=1 4 10 7 WALL SPACE
+FillRect=1 7 10 10 WALL SPACE
+FillRect=1 10 10 13 WALL SPACE
+Line=10 1 10 13 DIRT
+Point=3 3 DIAMOND
+Point=4 3 FIREFLYl
+Point=3 6 DIAMOND
+Point=4 6 FIREFLYl
+Point=3 9 DIAMOND
+Point=4 9 FIREFLYl
+Point=3 12 DIAMOND
+Point=4 12 FIREFLYl
+FillRect=29 1 38 4 WALL SPACE
+FillRect=29 4 38 7 WALL SPACE
+FillRect=29 7 38 10 WALL SPACE
+FillRect=29 10 38 13 WALL SPACE
+Line=29 1 29 13 DIRT
+Point=36 3 DIAMOND
+Point=35 3 FIREFLYl
+Point=36 6 DIAMOND
+Point=35 6 FIREFLYl
+Point=36 9 DIAMOND
+Point=35 9 FIREFLYl
+Point=36 12 DIAMOND
+Point=35 12 FIREFLYl
+Point=3 18 INBOX
+Point=38 18 OUTBOX
+[/objects]
+[/cave]
+
+[cave]
+Name=Cave G: Amoeba
+Description=Surround the amoeba with boulders, so it can't grow anymore. Pick up jewels that are created when it suffocates.
+Intermission=false
+IntermissionProperties.instantlife=true
+IntermissionProperties.rewardlife=false
+Size=40 22 0 0 39 21
+Colors=Black Black Brown LightRed Green Green Green
+DiamondsRequired=15 20 25 25 25
+DiamondValue=10 20
+CaveTime=120 120 120 120 120
+CaveScheduling=bd1
+PALTiming=true
+CaveDelay=12 6 3 1 0
+FrameTime=200 200 200 200 200
+RandSeed=2 7 8 10 9
+RandomFill=SPACE 100 BOULDER 40 FIREFLYl 2 SPACE 0
+ActiveGuyIsFirst=false
+AmoebaTime=75 75 75 75 75
+MagicWallTime=75 75 75 75 75
+SlimePermeabilityC64=0 0 0 0 0
+AcidProperties=DIAMONDBIRTH5 0.0000
+Effect=ACIDEffect ACID
+BorderProperties.lineshift=true
+BorderProperties.objectwraparound=true
+
+[objects]
+Line=1 5 12 5 WALL
+Line=28 3 38 3 WALL
+Line=19 19 20 19 AMOEBA
+Point=4 4 DIAMOND
+Point=4 12 DIAMOND
+Point=4 20 DIAMOND
+Point=34 2 DIAMOND
+Point=34 10 DIAMOND
+Point=34 20 DIAMOND
+Point=20 1 INBOX
+Point=39 5 OUTBOX
+[/objects]
+[/cave]
+
+[cave]
+Name=Cave H: Enchanted Wall
+Description=Activate the enchanted wall and create as many jewels as you can.
+Intermission=false
+IntermissionProperties.instantlife=true
+IntermissionProperties.rewardlife=false
+Size=40 22 0 0 39 21
+Colors=Black Black Red LightBlue White White White
+DiamondsRequired=10 15 20 20 20
+DiamondValue=10 20
+CaveTime=120 110 100 90 80
+CaveScheduling=bd1
+PALTiming=true
+CaveDelay=12 6 3 1 0
+FrameTime=200 200 200 200 200
+RandSeed=1 3 4 5 6
+RandomFill=SPACE 90 BOULDER 50 FIREFLYl 2 SPACE 0
+ActiveGuyIsFirst=false
+AmoebaTime=20 20 20 20 20
+MagicWallTime=20 20 20 20 20
+SlimePermeabilityC64=0 0 0 0 0
+AcidProperties=EXPLOSION1 0.0000
+Effect=ACIDEffect ACID
+BorderProperties.lineshift=true
+BorderProperties.objectwraparound=true
+
+[objects]
+Point=4 4 DIAMOND
+Point=34 2 DIAMOND
+Point=34 10 DIAMOND
+Point=0 3 OUTBOX
+Point=20 1 INBOX
+Line=1 5 12 5 WALL
+Line=1 13 12 13 WALL
+Line=28 3 38 3 WALL
+Line=28 11 38 11 WALL
+Line=14 15 21 15 MAGICWALL
+Point=12 14 DIAMOND
+Point=14 16 SPACE
+Point=19 16 DIAMOND
+Line=14 13 21 13 DIRT
+[/objects]
+[/cave]
+
+[cave]
+Name=Intermission 2
+Selectable=false
+Intermission=true
+IntermissionProperties.instantlife=true
+IntermissionProperties.rewardlife=false
+Size=40 22 0 0 19 11
+Colors=Black Black Blue Gray3 White White White
+DiamondsRequired=16 16 16 16 16
+DiamondValue=10 0
+CaveTime=15 15 15 15 15
+CaveScheduling=bd1
+PALTiming=true
+CaveDelay=12 6 3 1 0
+FrameTime=200 200 200 200 200
+RandSeed=10 11 12 13 14
+RandomFill=SPACE 0 SPACE 0 SPACE 0 SPACE 0
+ActiveGuyIsFirst=false
+AmoebaTime=20 20 20 20 20
+MagicWallTime=20 20 20 20 20
+SlimePermeabilityC64=0 0 0 0 0
+AcidProperties=SPACE 0.0000
+Effect=ACIDEffect ACID
+BorderProperties.lineshift=true
+BorderProperties.objectwraparound=true
+
+[objects]
+FillRect=0 0 39 21 STEELWALL
+FillRect=0 0 19 11 STEELWALL DIRT
+Line=1 1 9 9 BOULDER
+Line=2 1 9 8 FIREFLYl
+Line=1 3 8 10 DIAMOND
+Line=1 4 7 10 BOULDER
+Line=18 1 10 9 BOULDER
+Line=18 3 11 10 DIAMOND
+Line=18 4 12 10 BOULDER
+Point=1 2 INBOX
+Point=18 2 OUTBOX
+[/objects]
+[/cave]
+
+[cave]
+Name=Cave I: Greed
+Description=You have to get a lot of jewels here, lucky there are so many.
+Intermission=false
+IntermissionProperties.instantlife=true
+IntermissionProperties.rewardlife=false
+Size=40 22 0 0 39 21
+Colors=Black Black Orange Purple White White White
+DiamondsRequired=75 75 80 85 90
+DiamondValue=5 10
+CaveTime=150 150 130 130 120
+CaveScheduling=bd1
+PALTiming=true
+CaveDelay=12 6 3 1 0
+FrameTime=200 200 200 200 200
+RandSeed=100 137 140 251 51
+RandomFill=BOULDER 240 DIAMOND 120 SPACE 0 SPACE 0
+ActiveGuyIsFirst=false
+AmoebaTime=20 20 20 20 20
+MagicWallTime=20 20 20 20 20
+SlimePermeabilityC64=0 0 0 0 0
+AcidProperties=BUTTERFLYd 0.0000
+Effect=ACIDEffect ACID
+BorderProperties.lineshift=true
+BorderProperties.objectwraparound=true
+
+[objects]
+FillRect=5 8 17 20 WALL SPACE
+Point=12 8 DIRT
+FillRect=25 8 37 20 WALL SPACE
+Point=31 8 DIRT
+Line=17 16 25 16 WALL
+Line=17 17 25 17 SPACE
+Point=7 10 INBOX
+Point=8 10 OUTBOX
+[/objects]
+[/cave]
+
+[cave]
+Name=Cave J: Tracks
+Description=Get the jewels, avoid the fireflies.
+Intermission=false
+IntermissionProperties.instantlife=true
+IntermissionProperties.rewardlife=false
+Size=40 22 0 0 39 21
+Colors=Black Black Blue Orange White White White
+DiamondsRequired=12 12 12 12 12
+DiamondValue=25 60
+CaveTime=150 130 120 110 100
+CaveScheduling=bd1
+PALTiming=true
+CaveDelay=12 6 3 1 0
+FrameTime=200 200 200 200 200
+RandSeed=0 0 0 0 0
+RandomFill=SPACE 0 SPACE 0 SPACE 0 SPACE 0
+ActiveGuyIsFirst=false
+AmoebaTime=20 20 20 20 20
+MagicWallTime=20 20 20 20 20
+SlimePermeabilityC64=0 0 0 0 0
+AcidProperties=SPACE 0.0000
+Effect=ACIDEffect ACID
+BorderProperties.lineshift=true
+BorderProperties.objectwraparound=true
+
+[objects]
+Point=13 1 INBOX
+Point=39 20 OUTBOX
+Line=5 2 21 18 DIAMOND
+Line=21 2 5 18 DIAMOND
+FillRect=5 9 21 11 SPACE FIREFLYl
+Rectangle=1 2 21 18 WALL
+Point=13 2 SPACE
+Rectangle=7 4 19 16 WALL
+Point=13 4 SPACE
+Rectangle=9 6 17 14 WALL
+Point=13 6 SPACE
+Rectangle=11 8 15 12 WALL
+Point=13 8 SPACE
+FillRect=3 4 5 18 WALL FIREFLYl
+Point=4 4 SPACE
+Line=4 14 4 17 DIAMOND
+[/objects]
+[/cave]
+
+[cave]
+Name=Cave K: Crowd
+Description=You must move a lot of boulders around in some tight spaces.
+Intermission=false
+IntermissionProperties.instantlife=true
+IntermissionProperties.rewardlife=false
+Size=40 22 0 0 39 21
+Colors=Black Black Gray1 Orange White White White
+DiamondsRequired=6 6 6 6 6
+DiamondValue=50 0
+CaveTime=120 120 150 150 240
+CaveScheduling=bd1
+PALTiming=true
+CaveDelay=12 6 3 1 0
+FrameTime=200 200 200 200 200
+RandSeed=0 4 102 151 100
+RandomFill=SPACE 100 BOULDER 80 FIREFLYl 2 SPACE 0
+ActiveGuyIsFirst=false
+AmoebaTime=20 20 20 20 20
+MagicWallTime=20 20 20 20 20
+SlimePermeabilityC64=0 0 0 0 0
+AcidProperties=DIAMONDBIRTH5 0.0000
+Effect=ACIDEffect ACID
+BorderProperties.lineshift=true
+BorderProperties.objectwraparound=true
+
+[objects]
+Line=10 1 10 9 WALL
+Line=20 1 20 9 WALL
+Line=30 1 30 9 WALL
+Line=9 20 9 12 WALL
+Line=12 13 28 13 WALL
+Line=5 9 13 9 WALL
+Line=15 9 23 9 WALL
+Line=25 9 33 9 WALL
+Line=28 17 38 7 WALL
+Point=4 1 DIAMOND
+Point=14 1 DIAMOND
+Point=24 1 DIAMOND
+Point=34 1 DIAMOND
+Point=4 20 DIAMOND
+Point=35 19 DIAMOND
+Point=20 18 INBOX
+Point=38 15 OUTBOX
+[/objects]
+[/cave]
+
+[cave]
+Name=Cave L: Walls
+Description=You must blast hrough walls to get at some of the jewels. Drop a boulder on a firefly at the right time and place to do this.
+Intermission=false
+IntermissionProperties.instantlife=true
+IntermissionProperties.rewardlife=false
+Size=40 22 0 0 39 21
+Colors=Black Black Gray2 LightRed White White White
+DiamondsRequired=19 19 14 16 21
+DiamondValue=20 0
+CaveTime=180 170 160 160 160
+CaveScheduling=bd1
+PALTiming=true
+CaveDelay=12 6 3 1 0
+FrameTime=200 200 200 200 200
+RandSeed=0 60 2 59 102
+RandomFill=SPACE 60 BOULDER 50 DIAMOND 9 SPACE 0
+ActiveGuyIsFirst=false
+AmoebaTime=20 20 20 20 20
+MagicWallTime=20 20 20 20 20
+SlimePermeabilityC64=0 0 0 0 0
+AcidProperties=DUMMY 0.0000
+Effect=ACIDEffect ACID
+BorderProperties.lineshift=true
+BorderProperties.objectwraparound=true
+
+[objects]
+Line=10 3 10 20 WALL
+Line=14 3 14 20 WALL
+Line=18 3 18 20 WALL
+Line=22 3 22 20 WALL
+Line=2 4 12 4 WALL
+Line=2 8 12 8 WALL
+Line=2 12 16 12 WALL
+Line=2 16 12 16 WALL
+FillRect=30 2 33 5 DIRT SPACE
+Point=32 3 FIREFLYl
+FillRect=30 7 33 10 DIRT SPACE
+Point=32 8 FIREFLYl
+FillRect=30 12 33 15 DIRT SPACE
+Point=32 13 FIREFLYl
+Point=3 18 INBOX
+Point=39 20 OUTBOX
+[/objects]
+[/cave]
+
+[cave]
+Name=Intermission 3
+Selectable=false
+Intermission=true
+IntermissionProperties.instantlife=true
+IntermissionProperties.rewardlife=false
+Size=40 22 0 0 19 11
+Colors=Black Black Blue Orange White White White
+DiamondsRequired=14 14 14 14 14
+DiamondValue=10 0
+CaveTime=20 20 20 20 20
+CaveScheduling=bd1
+PALTiming=true
+CaveDelay=12 6 3 1 0
+FrameTime=200 200 200 200 200
+RandSeed=10 11 12 13 14
+RandomFill=SPACE 0 SPACE 0 SPACE 0 SPACE 0
+ActiveGuyIsFirst=false
+AmoebaTime=4 4 4 4 4
+MagicWallTime=4 4 4 4 4
+SlimePermeabilityC64=0 0 0 0 0
+AcidProperties=SPACE 0.0000
+Effect=ACIDEffect ACID
+BorderProperties.lineshift=true
+BorderProperties.objectwraparound=true
+
+[objects]
+FillRect=0 0 39 21 STEELWALL
+FillRect=0 0 19 11 STEELWALL SPACE
+Line=1 10 18 10 DIAMOND
+FillRect=15 7 18 10 FIREFLYl
+Point=8 1 INBOX
+Point=18 5 OUTBOX
+[/objects]
+[/cave]
+
+[cave]
+Name=Cave M: Apocalypse
+Description=Bring the butterflies and amoeba together and watch the jewels fly.
+Intermission=false
+IntermissionProperties.instantlife=true
+IntermissionProperties.rewardlife=false
+Size=40 22 0 0 39 21
+Colors=Black Black Blue Orange Green Green Green
+DiamondsRequired=50 55 60 70 80
+DiamondValue=5 8
+CaveTime=160 155 150 145 140
+CaveScheduling=bd1
+PALTiming=true
+CaveDelay=12 6 3 1 0
+FrameTime=200 200 200 200 200
+RandomFill=BOULDER 40 SPACE 0 SPACE 0 SPACE 0
+ActiveGuyIsFirst=false
+AmoebaTime=140 140 140 140 140
+MagicWallTime=140 140 140 140 140
+SlimePermeabilityC64=0 0 0 0 0
+AcidProperties=GUYBIRTH3 0.0000
+Effect=ACIDEffect ACID
+BorderProperties.lineshift=true
+BorderProperties.objectwraparound=true
+
+[objects]
+Point=18 1 INBOX
+Point=10 1 OUTBOX
+Point=20 1 AMOEBA
+Line=5 16 34 16 WALL
+Line=5 17 34 17 BUTTERFLYd
+Line=5 18 34 18 BOULDER
+Rectangle=5 19 34 20 DIRT
+[/objects]
+[/cave]
+
+[cave]
+Name=Cave N: Zigzag
+Description=Magically transform the butterflies into jewels, but don't waste any boulders and watch out the fireflies.
+Intermission=false
+IntermissionProperties.instantlife=true
+IntermissionProperties.rewardlife=false
+Size=40 22 0 0 39 21
+Colors=Black Black Gray2 Orange White White White
+DiamondsRequired=30 35 40 42 45
+DiamondValue=10 20
+CaveTime=150 145 140 135 130
+CaveScheduling=bd1
+PALTiming=true
+CaveDelay=12 6 3 1 0
+FrameTime=200 200 200 200 200
+RandSeed=0 0 0 0 0
+RandomFill=BOULDER 0 SPACE 0 SPACE 0 SPACE 0
+ActiveGuyIsFirst=false
+AmoebaTime=20 20 20 20 20
+MagicWallTime=20 20 20 20 20
+SlimePermeabilityC64=0 0 0 0 0
+AcidProperties=SPACE 0.0000
+Effect=ACIDEffect ACID
+BorderProperties.lineshift=true
+BorderProperties.objectwraparound=true
+
+[objects]
+FillRect=10 8 22 20 DIRT SPACE
+Line=11 9 22 20 BUTTERFLYd
+Rectangle=12 8 14 20 DIRT
+Rectangle=16 8 18 20 DIRT
+Rectangle=20 8 22 20 DIRT
+Line=22 6 33 6 BOULDER
+Line=22 5 33 5 FIREFLYl
+Rectangle=23 4 25 7 DIRT
+Rectangle=27 4 29 7 DIRT
+Rectangle=31 4 33 7 DIRT
+Point=3 1 INBOX
+Point=39 18 OUTBOX
+[/objects]
+[/cave]
+
+[cave]
+Name=Cave O: Funnel
+Description=There is an enchanted wall at the bottom of the rock tunnel.
+Intermission=false
+IntermissionProperties.instantlife=true
+IntermissionProperties.rewardlife=false
+Size=40 22 0 0 39 21
+Colors=Black Black Orange LightBlue White White White
+DiamondsRequired=15 20 20 25 30
+DiamondValue=10 20
+CaveTime=120 120 120 120 140
+CaveScheduling=bd1
+PALTiming=true
+CaveDelay=12 6 3 1 0
+FrameTime=200 200 200 200 200
+RandSeed=1 29 30 31 32
+RandomFill=SPACE 100 BOULDER 80 FIREFLYl 2 SPACE 0
+ActiveGuyIsFirst=false
+AmoebaTime=8 8 8 8 8
+MagicWallTime=8 8 8 8 8
+SlimePermeabilityC64=0 0 0 0 0
+AcidProperties=DIAMONDBIRTH5 0.0000
+Effect=ACIDEffect ACID
+BorderProperties.lineshift=true
+BorderProperties.objectwraparound=true
+
+[objects]
+Line=2 2 11 11 WALL
+Line=15 11 24 2 WALL
+Line=12 12 14 12 DIRT
+Line=12 13 14 13 MAGICWALL
+Point=20 20 OUTBOX
+Point=20 1 INBOX
+[/objects]
+[/cave]
+
+[cave]
+Name=Cave P: Enchanted boxes
+Description=The top of each square room is an enchanted wall, but you'll have to blast your way inside.
+Intermission=false
+IntermissionProperties.instantlife=true
+IntermissionProperties.rewardlife=false
+Size=40 22 0 0 39 21
+Colors=Black Black Brown LightRed White White White
+DiamondsRequired=12 15 15 15 12
+DiamondValue=10 20
+CaveTime=150 150 150 150 150
+CaveScheduling=bd1
+PALTiming=true
+CaveDelay=12 6 3 1 0
+FrameTime=200 200 200 200 200
+RandSeed=1 120 129 126 123
+RandomFill=BOULDER 50 SPACE 0 SPACE 0 SPACE 0
+ActiveGuyIsFirst=false
+AmoebaTime=20 20 20 20 20
+MagicWallTime=20 20 20 20 20
+SlimePermeabilityC64=0 0 0 0 0
+AcidProperties=BUTTERFLYu 0.0000
+Effect=ACIDEffect ACID
+BorderProperties.lineshift=true
+BorderProperties.objectwraparound=true
+
+[objects]
+Point=1 1 INBOX
+Point=39 2 OUTBOX
+FillRect=8 17 11 20 DIRT SPACE
+Point=10 18 FIREFLYl
+Rectangle=7 8 12 15 WALL
+Line=7 8 12 8 MAGICWALL
+FillRect=16 17 19 20 DIRT SPACE
+Point=18 18 FIREFLYl
+Rectangle=15 8 20 15 WALL
+Line=15 8 20 8 MAGICWALL
+FillRect=24 17 27 20 DIRT SPACE
+Point=26 18 FIREFLYl
+FillRect=32 17 35 20 DIRT SPACE
+Point=34 18 FIREFLYl
+[/objects]
+[/cave]
+
+[cave]
+Name=Intermission 4
+Selectable=false
+Intermission=true
+IntermissionProperties.instantlife=true
+IntermissionProperties.rewardlife=false
+Size=40 22 0 0 19 11
+Colors=Black Black Blue Orange White White White
+DiamondsRequired=6 6 6 6 6
+DiamondValue=30 0
+CaveTime=20 20 20 20 20
+CaveScheduling=bd1
+PALTiming=true
+CaveDelay=12 6 3 1 0
+FrameTime=200 200 200 200 200
+RandSeed=0 0 0 0 0
+RandomFill=SPACE 0 SPACE 0 SPACE 0 SPACE 0
+ActiveGuyIsFirst=false
+AmoebaTime=3 3 3 3 3
+MagicWallTime=3 3 3 3 3
+SlimePermeabilityC64=0 0 0 0 0
+AcidProperties=SPACE 0.0000
+Effect=ACIDEffect ACID
+BorderProperties.lineshift=true
+BorderProperties.objectwraparound=true
+
+[objects]
+FillRect=0 0 39 21 STEELWALL
+FillRect=0 0 19 11 STEELWALL DIRT
+Rectangle=11 1 13 2 BOULDER
+FillRect=11 5 13 10 SPACE
+Line=11 4 13 4 MAGICWALL
+Line=11 8 13 8 MAGICWALL
+Line=8 5 10 7 BOULDER
+Point=3 1 INBOX
+Point=9 8 OUTBOX
+[/objects]
+[/cave]
+[/game]
+[/BDCFF]

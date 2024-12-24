@@ -1,0 +1,22 @@
+# .font: font.text_2
+This game is Freeware!
+If you like it, send e-mail to:
+
+# .font: font.text_3
+info@artsoft.org
+
+
+
+# .font: font.text_2
+More information and levels:
+
+# .font: font.text_3
+https://www.artsoft.org/
+
+
+
+# .font: font.text_2
+If you have created new levels,
+send them to me to include them!
+
+:-)

@@ -1,0 +1,6 @@
+A chasing rock looks like an ordinary rock. It can even pass slime. It is
+lightweight, you can push it at once, as long as it is sleeping. Once it begins
+to fall, it wakes up and begins chasing you. You can also push awakened rocks,
+if you have eaten the sweet.
+
+This is the sleeping version.

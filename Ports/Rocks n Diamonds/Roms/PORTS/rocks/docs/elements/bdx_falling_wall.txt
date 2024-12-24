@@ -1,0 +1,3 @@
+Whenever there is a falling wall above the player merely separated by empty
+space, it starts falling. It does so at any distance. If it hits the player,
+it explodes. If it hits anything else, it just stops.

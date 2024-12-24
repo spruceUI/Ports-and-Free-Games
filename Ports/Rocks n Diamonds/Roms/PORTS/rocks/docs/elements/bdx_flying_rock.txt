@@ -1,0 +1,2 @@
+The flying variant of a rock. Note that this one can crush enemies as well as
+the player!

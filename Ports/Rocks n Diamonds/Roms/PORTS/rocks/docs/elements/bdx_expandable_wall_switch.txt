@@ -1,0 +1,1 @@
+With this switch you can control the direction of the expandable wall.

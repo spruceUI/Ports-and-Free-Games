@@ -1,0 +1,6 @@
+Fireflies move through empty space. Touching them is deadly.. Fireflies
+blow up when hit by a falling rock or diamond. Amoeba is also deadly for them.
+They explode into space, producing a 3x3 square of empty space. Fireflies are
+spinning left. They prefer turning left, usually counter-clockwise.
+
+There is another variant of the firefly that is spinning right.

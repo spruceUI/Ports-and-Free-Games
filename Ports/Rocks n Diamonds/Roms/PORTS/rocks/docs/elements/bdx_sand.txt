@@ -1,0 +1,1 @@
+You can move through sand, leaving empty space behind. Amoeba can eat it.

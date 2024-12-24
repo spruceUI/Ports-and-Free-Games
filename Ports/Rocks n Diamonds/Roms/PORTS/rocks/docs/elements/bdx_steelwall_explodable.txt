@@ -1,0 +1,1 @@
+Acts like ordinary steel wall, but can be removed by explosions.

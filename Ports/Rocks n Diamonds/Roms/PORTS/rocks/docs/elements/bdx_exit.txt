@@ -1,0 +1,4 @@
+After collecting the required number of diamonds, look for a flashing out box
+to exit the cave. Closed out box looks like steel wall, but beware of explosions
+near the out box: You could accidentally destroy an exit. This prevents you from
+successfully finishing the cave.

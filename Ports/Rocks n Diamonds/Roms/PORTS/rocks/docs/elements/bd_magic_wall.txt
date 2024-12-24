@@ -1,0 +1,8 @@
+This is a BD style magic wall. It gets activated for a limited duration by
+rocks or gems that fall on it. While activated, they can fall through it, and
+rocks turn into BD style diamonds, and gems turn into BD style rocks.
+After the magic wall has stopped running, it cannot be activated again.
+
+The duration in seconds for which magic walls are active is configurable.
+A duration of zero will let the wall run forever.
+All magic walls share the same timer.

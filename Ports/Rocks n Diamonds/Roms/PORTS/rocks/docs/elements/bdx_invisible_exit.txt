@@ -1,0 +1,1 @@
+This is also an exit, but it remains non-flashing and thus is difficult to find.

@@ -1,0 +1,3 @@
+Expandable wall expands in horizontal or vertical (or both) direction, if there
+is an empty space to fill up. You should be very careful not to be catched by
+the expanding wall.

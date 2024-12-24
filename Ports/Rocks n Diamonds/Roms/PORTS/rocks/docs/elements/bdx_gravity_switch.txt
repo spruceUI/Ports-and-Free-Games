@@ -1,0 +1,4 @@
+When this switch is active, you can push it to change the gravitation.
+The direction into which you push it will determine the direction the
+gravitation will change to.
+To activate the gravitation switch, the pot has to be stirred first.

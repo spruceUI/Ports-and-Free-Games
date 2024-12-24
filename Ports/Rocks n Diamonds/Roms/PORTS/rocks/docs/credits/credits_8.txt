@@ -1,0 +1,26 @@
+# .font: font.text_2
+Special thanks to
+
+# .font: font.text_3
+Frank Schindler
+
+# .font: font.text_2
+for creating
+
+# .font: font.text_3
+"MegaPlex"
+
+# .font: font.text_2
+used for the
+native Supaplex engine
+
+
+
+# .font: font.text_2
+Thanks to
+
+# .font: font.text_3
+Guido Schulz
+
+# .font: font.text_2
+for the initial DOS/Windows port

@@ -1,0 +1,5 @@
+Amoebas grow randomly through empty space and sand. When enclosed, they stop
+growing and transform into diamonds (or some other, configurable game element).
+
+When grown too big, they suddenly transform into rocks. At the beginning,
+they can grow slowly, but after some time they start growing very rapidly.

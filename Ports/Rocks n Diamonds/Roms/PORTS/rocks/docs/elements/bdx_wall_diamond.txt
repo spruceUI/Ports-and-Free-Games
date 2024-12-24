@@ -1,0 +1,1 @@
+This wall contains a diamond which can be freed by using the pneumatic hammer.

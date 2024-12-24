@@ -1,0 +1,2 @@
+This player is unable to move or even snap.
+It can still be killed by falling objects or enemies.

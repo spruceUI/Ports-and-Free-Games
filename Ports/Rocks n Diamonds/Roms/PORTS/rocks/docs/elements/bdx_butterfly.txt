@@ -1,0 +1,6 @@
+Butterflies move through empty space. Touching them is deadly.. Butterflies
+blow up when hit by a falling rock or diamond. Amoeba is also deadly for them.
+They explode into diamonds, producing a 3x3 square of diamonds. Butterflies are
+spinning right. They prefer turning right, usually clockwise.
+
+There is another variant of the butterfly that is spinning left.

@@ -1,0 +1,9 @@
+# .font: font.text_2
+And not to forget:
+
+Many thanks to
+
+# .font: font.text_3
+All those who contributed
+levels to this game
+since 1995

@@ -1,0 +1,15 @@
+# .font: font.text_2
+Special thanks to
+
+# .font: font.text_3
+Alan Bond
+
+# .font: font.text_2
+and
+
+# .font: font.text_3
+Jürgen Bonhagen
+
+# .font: font.text_2
+for the continuous creation
+of outstanding level sets

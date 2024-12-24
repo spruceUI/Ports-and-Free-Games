@@ -1,0 +1,5 @@
+Sometimes diamonds or keys are buried in walls. You can use a pneumatic hammer
+to break these walls, or simple walls which contain nothing. Stand on something,
+and press the snap or drop key together with a left or right direction key to
+use the hammer on a wall which is near the player, next to the element you
+stand on.

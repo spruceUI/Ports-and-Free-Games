@@ -1,0 +1,6 @@
+This is your player's look-alike. You must protect it against flies. If a
+voodoo doll dies by one of them, your player also dies immediately. This doll
+can have different properties: Sometimes it can collect diamonds for you.
+Sometimes it must be protected from falling rocks. If it is hit by a rock, it
+turns into a gravestone surrounded by steel walls. Also, it may or may not turn
+into a gravestone by nearby explosions.

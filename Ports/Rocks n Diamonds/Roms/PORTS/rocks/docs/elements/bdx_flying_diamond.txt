@@ -1,0 +1,2 @@
+Exactly like a diamond, but instead of falling down, it flies upwards, as
+high as it can.

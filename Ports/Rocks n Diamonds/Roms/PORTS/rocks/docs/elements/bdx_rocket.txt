@@ -1,0 +1,1 @@
+A rocket that can be fired using the rocket launcher.

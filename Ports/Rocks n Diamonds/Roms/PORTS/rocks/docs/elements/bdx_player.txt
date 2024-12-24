@@ -1,0 +1,2 @@
+This is the player. The player can move through empty space and sand, can pick
+up diamonds and push rocks, but should avoid fireflies and other enemies.

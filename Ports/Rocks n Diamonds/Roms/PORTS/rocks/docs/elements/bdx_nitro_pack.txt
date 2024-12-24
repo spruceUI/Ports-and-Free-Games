@@ -1,0 +1,3 @@
+This vial of nitroglycerin can be pushed around and will fall like a rock,
+but if it lands on something other than sand, it will cause a 3x3 explosion
+like a firefly.

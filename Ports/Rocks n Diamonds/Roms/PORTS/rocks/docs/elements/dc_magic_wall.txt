@@ -1,0 +1,9 @@
+This is a DC style magic wall. It gets activated for a limited duration by
+rocks or gems that fall on it. While activated, they can fall through it, and
+rocks turn into emeralds, emeralds turn into diamonds, diamonds turn into
+rocks, pearls turn into bombs, and crystals do not change.
+After the magic wall has stopped running, it cannot be activated again.
+
+The duration in seconds for which magic walls are active is configurable.
+A duration of zero will let the wall run forever.
+All magic walls share the same timer.

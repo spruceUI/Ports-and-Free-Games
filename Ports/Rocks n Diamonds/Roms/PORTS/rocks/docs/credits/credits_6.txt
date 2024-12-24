@@ -1,0 +1,25 @@
+# .font: font.text_2
+Thanks to
+
+# .font: font.text_3
+Peter Elzner
+
+# .font: font.text_2
+for ideas and inspiration by
+
+# .font: font.text_3
+"Diamond Caves"
+
+
+
+# .font: font.text_2
+Thanks to
+
+# .font: font.text_3
+Steffest
+
+# .font: font.text_2
+for ideas and inspiration by
+
+# .font: font.text_3
+"DX-Boulderdash"

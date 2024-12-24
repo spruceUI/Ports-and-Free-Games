@@ -1,0 +1,3 @@
+Acts like ordinary wall, but is sloped on the lower left corner.
+
+Elements like flying rocks or diamonds will roll off to the left.

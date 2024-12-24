@@ -1,0 +1,2 @@
+This flying moth behaves just like a butterfly, except that it explodes into
+rocks instead of diamonds.

@@ -1,0 +1,3 @@
+This machine replicates the element which is on top of it. At regular intervals,
+a new element drops out underneath, if there is space to do this. The rate of
+materializing the new elements can be different in every cave.

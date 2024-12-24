@@ -1,0 +1,3 @@
+If you find a rocket launcher, you can pick it up, and fire rockets.
+To use it, press fire and a direction key. Be careful not to make an
+explosion which is too close to the player.

@@ -1,0 +1,2 @@
+You can move through grass like sand, leaving empty space behind.
+Amoeba can eat it.

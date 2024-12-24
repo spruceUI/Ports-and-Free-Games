@@ -1,0 +1,3 @@
+The teleporter will move you from one place to another, if you step into it.
+The destination teleporter depends on the direction from which you stepped into
+the teleporter.

@@ -1,0 +1,23 @@
+# .font: font.text_2
+Special thanks to
+
+# .font: font.text_3
+Peter Liepa
+
+# .font: font.text_2
+for creating
+
+# .font: font.text_3
+"Boulder Dash"
+
+# .font: font.text_2
+in the year
+
+# .font: font.text_3
+1984
+
+# .font: font.text_2
+published by
+
+# .font: font.text_3
+First Star Software
