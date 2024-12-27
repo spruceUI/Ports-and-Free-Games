@@ -3,7 +3,7 @@
 ROM_DIR="$(dirname "$0")"
 GAMEDIR="$ROM_DIR/rocks"
 export LD_LIBRARY_PATH="$GAMEDIR/lib:$LD_LIBRARY_PATH"
-export XDG_CONFIG_HOME="$GAMEDIR/.rocksndiamonds"
+export HOME="/mnt/SDCARD/Saves" # store scores in saves dir
 
 cd "$GAMEDIR"
 
