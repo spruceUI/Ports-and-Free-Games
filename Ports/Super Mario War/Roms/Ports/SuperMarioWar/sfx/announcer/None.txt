@@ -17,24 +17,24 @@
 #10 Kills In Row
 [none]
 #2 Kills In Air
-sfx/packs/Classic/cannon.wav
+sfx/packs/Classic/cannon.ogg
 #Stop Kills In Row
-sfx/packs/Classic/cannon.wav
+sfx/packs/Classic/cannon.ogg
 #Game Start Fade Out/In
-sfx/announcer/Mario/enter-stage.wav
+sfx/announcer/Mario/enter-stage.ogg
 #Game Start Count Down 3
-sfx/packs/Classic/starwarning.wav
+sfx/packs/Classic/starwarning.ogg
 #Game Start Count Down 2
-sfx/packs/Classic/starwarning.wav
+sfx/packs/Classic/starwarning.ogg
 #Game Start Count Down 1
-sfx/packs/Classic/starwarning.wav
+sfx/packs/Classic/starwarning.ogg
 #Game Start Go!
-sfx/announcer/Mario/lets_go.wav
+sfx/announcer/Mario/lets_go.ogg
 #Red Team Removed From Game
-sfx/packs/Classic/powerdown.wav
+sfx/packs/Classic/powerdown.ogg
 #Green Team Removed From Game
-sfx/packs/Classic/powerdown.wav
+sfx/packs/Classic/powerdown.ogg
 #Yellow Team Removed From Game
-sfx/packs/Classic/powerdown.wav
+sfx/packs/Classic/powerdown.ogg
 #Blue Team Removed From Game
-sfx/packs/Classic/powerdown.wav
+sfx/packs/Classic/powerdown.ogg
