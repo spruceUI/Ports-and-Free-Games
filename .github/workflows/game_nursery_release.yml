@@ -169,18 +169,18 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TAG: ${{ inputs.tag || 'Nursery' }}
         run: |
-          # Create release if it doesn't exist
+          # Delete existing release if present, then create fresh
+          echo "Checking for existing release '$TAG'..."
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            echo "Deleting existing release '$TAG'..."
+            gh release delete "$TAG" --yes --cleanup-tag 2>/dev/null || true
+          fi
+
+          echo "Creating release '$TAG'..."
           gh release create "$TAG" \
             --title "Game Nursery" \
             --notes "Auto-generated Game Nursery release. Contains individual game archives, nursery_config, and boxart bundle." \
-            2>/dev/null || echo "Release '$TAG' already exists, will update assets."
-
-          # Upload all assets (--clobber replaces existing files with same name)
-          echo "Uploading game archives..."
-          gh release upload "$TAG" _archives/*.7z --clobber
-
-          echo "Uploading nursery_config..."
-          gh release upload "$TAG" _output/nursery_config --clobber
+            _archives/*.7z _output/nursery_config
 
           if [ -f _output/boxart.7z ]; then
             echo "Uploading boxart.7z..."
@@ -188,5 +188,5 @@ jobs:
           fi
 
           echo ""
-          echo "Release '$TAG' updated successfully."
+          echo "Release '$TAG' created successfully."
           echo "URL: https://github.com/${{ github.repository }}/releases/tag/$TAG"
