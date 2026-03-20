@@ -1,0 +1,7 @@
+{
+  "display": "Celeste Classic",
+  "shortname": "Ccleste",
+  "description": "A source port of the acclaimed Pico-8 platformer of the same name",
+  "requires_files": false,
+  "hidden": false
+}

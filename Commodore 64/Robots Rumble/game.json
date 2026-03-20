@@ -1,0 +1,7 @@
+{
+  "display": "Robots Rumble",
+  "shortname": "",
+  "description": "Control a robot with your magnets and avoid traps.",
+  "requires_files": false,
+  "hidden": false
+}

@@ -1,0 +1,7 @@
+{
+  "display": "Anarch",
+  "shortname": "",
+  "description": "Destroy robots in this suckless public domain Doomlike.",
+  "requires_files": false,
+  "hidden": false
+}

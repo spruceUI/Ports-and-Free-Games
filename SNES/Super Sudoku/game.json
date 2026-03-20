@@ -1,0 +1,7 @@
+{
+  "display": "Super Sudoku",
+  "shortname": "",
+  "description": "Homebrew sudoku game with 400 puzzles across 4 difficulties.",
+  "requires_files": false,
+  "hidden": false
+}

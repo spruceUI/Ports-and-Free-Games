@@ -1,0 +1,7 @@
+{
+  "display": "Automated Cave Explorer",
+  "shortname": "Cave Explorer",
+  "description": "an arcade labyrinth game in BoulderDash style",
+  "requires_files": false,
+  "hidden": false
+}

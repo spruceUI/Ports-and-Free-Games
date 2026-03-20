@@ -1,0 +1,7 @@
+{
+  "display": "Mario's Cement Factory",
+  "shortname": "Cement Factory",
+  "description": "Mario must make sure the cement from the top of the screen reaches one of the two concrete mixers.",
+  "requires_files": false,
+  "hidden": false
+}

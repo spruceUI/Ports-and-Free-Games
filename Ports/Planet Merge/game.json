@@ -1,0 +1,7 @@
+{
+  "display": "Planet Merge",
+  "shortname": "",
+  "description": "Join celestial bodies, aiming for the highest score in this Suika-like game.",
+  "requires_files": false,
+  "hidden": false
+}

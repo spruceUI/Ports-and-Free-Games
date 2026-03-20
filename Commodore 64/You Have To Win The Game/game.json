@@ -1,0 +1,7 @@
+{
+  "display": "You Have To Win The Game",
+  "shortname": "YHTWTG",
+  "description": "An exploration platformer with a 1980s PC aesthetic. Run, jump, and avoid deadly pitfalls.",
+  "requires_files": false,
+  "hidden": false
+}

@@ -1,0 +1,7 @@
+{
+  "display": "Catacombs of the Damned",
+  "shortname": "Catacombs",
+  "description": "An impressive 3D dungeon crawler by James Howard.",
+  "requires_files": false,
+  "hidden": false
+}

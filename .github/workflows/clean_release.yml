@@ -6,6 +6,7 @@ on:
 
 jobs:
   build:
+    if: github.event.release.tag_name != 'Nursery'
     runs-on: ubuntu-latest
 
     steps:
