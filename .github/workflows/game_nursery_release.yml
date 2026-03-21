@@ -180,7 +180,7 @@ jobs:
           gh release create "$TAG" \
             --title "Game Nursery" \
             --notes "Auto-generated Game Nursery release. Contains individual game archives, nursery_config, and boxart bundle." \
-            _archives/*.7z _output/nursery_config
+            _archives/*.7z _output/nursery_config systems.json
 
           if [ -f _output/boxart.7z ]; then
             echo "Uploading boxart.7z..."

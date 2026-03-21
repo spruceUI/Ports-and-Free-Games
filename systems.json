@@ -1,0 +1,13 @@
+{
+  "Arduboy": { "icon": "arduboy", "emu": "ARDUBOY" },
+  "Commodore 64": { "icon": "c64", "emu": "COMMODORE" },
+  "Doom": { "icon": "doom", "emu": "DOOM" },
+  "EasyRPG": { "icon": "easyrpg", "emu": "EASYRPG" },
+  "Gameboy": { "icon": "gb", "emu": "GB" },
+  "Gameboy Advance": { "icon": "gba", "emu": "GBA" },
+  "Game Tank": { "icon": "gametank", "emu": "GAMETANK" },
+  "NES": { "icon": "fc", "emu": "FC" },
+  "SNES": { "icon": "sfc", "emu": "SFC" },
+  "Ports": { "icon": "ports", "emu": "A30PORTS" },
+  "ZX Spectrum": { "icon": "zxs", "emu": "ZXS" }
+}
