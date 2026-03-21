@@ -18,6 +18,7 @@
   "Doom": { "icon": "doom", "emu": "DOOM" },
   "DOS": { "icon": "dos", "emu": "DOS" },
   "EasyRPG": { "icon": "easyrpg", "emu": "EASYRPG" },
+  "eBooks": { "icon": "ereader", "emu": "" },
   "Fairchild": { "icon": "fairchild", "emu": "FAIRCHILD" },
   "FDS": { "icon": "fds", "emu": "FDS" },
   "Final Burn Neo": { "icon": "arcade", "emu": "FBNEO" },
