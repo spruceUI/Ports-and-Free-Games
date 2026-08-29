@@ -1,0 +1,1 @@
+Copy Flashback game files from Flashback_Data/StreamingAssets/data to Roms/PORTS/reminiscence. Music files from the Amiga version can be used, as well as voice.vce from the Sega CD version to provide dialogue
