@@ -78,8 +78,12 @@ jobs:
               archive_file="${archive_name}.7z"
 
               # Always build archive for every game (include all dirs: Roms/, BIOS/, Emu/, etc.)
+              # -mf=off: modern 7-Zip auto-applies its ARM64 BCJ filter to entries
+              # holding aarch64 binaries, and the 7zr on the devices does not know
+              # that filter - it just reports "unable to extract". The spruce
+              # release archive disables filters for the same reason.
               echo "ARCHIVE: $game_dir -> $archive_file"
-              (cd "$game_dir" && 7z a -mx=9 "../../${ARCHIVE_DIR}/${archive_file}" . -x'!game.json') > /dev/null
+              (cd "$game_dir" && 7z a -mx=9 -mf=off "../../${ARCHIVE_DIR}/${archive_file}" . -x'!game.json') > /dev/null
 
               # Skip hidden games for config and boxart
               if [ "$hidden" = "true" ]; then
