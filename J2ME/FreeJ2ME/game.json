@@ -1,7 +1,7 @@
 {
   "display": "FreeJ2ME",
   "shortname": "",
-  "description": "Java ME phone games. Installs the FreeJ2ME-Plus core plus the Java runtime it needs, and three free midlets to start with: Bomber 2, jtris and Crossword Solver. 64-bit devices only.",
+  "description": "Java ME phone games. Installs the FreeJ2ME-Plus core plus the Java runtime it needs, and three free midlets to start with: Bomber 2, jtris and Crossword Solver. Runs on every spruce device, 64-bit and 32-bit.",
   "requires_files": false,
   "hidden": false
 }
