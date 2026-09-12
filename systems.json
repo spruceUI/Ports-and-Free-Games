@@ -29,6 +29,7 @@
   "Game Tank": { "icon": "gametank", "emu": "GAMETANK" },
   "Game & Watch": { "icon": "gw", "emu": "GW" },
   "Intellivision": { "icon": "itv", "emu": "INTELLIVISION" },
+  "J2ME": { "icon": "j2me", "emu": "J2ME" },
   "Lynx": { "icon": "lynx", "emu": "LYNX" },
   "MAME": { "icon": "mame", "emu": "MAME2003PLUS" },
   "Mega Drive": { "icon": "md", "emu": "MD" },
