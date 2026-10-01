@@ -73,13 +73,31 @@ case "$PLATFORM" in
     ;;
 
 ############################################################
+# Anbernic H700
+############################################################
+    "Anbernic"* )
+        export LD_LIBRARY_PATH="$CUR_DIR/grout/lib64:$LD_LIBRARY_PATH"
+        export SPRUCE_DEVICE="H700"
+        ./grout64
+    ;;
+
+
+############################################################
 # Unknown
 ############################################################
     * )
-        # F it we ball
-        echo "Unhandled spruce platform: '${PLATFORM:-<empty>}'" >> grout.log
+        case "$(uname -m)" in
+            arm*)
+                echo "Unknown 32-bit Spruce platform: '${PLATFORM:-<empty>}' ($(uname -m))" >> grout.log
+                exit 0
+            ;;
+        esac
+        echo "Unrecognized Spruce platform: '${PLATFORM:-<empty>}', trying generic 64-bit launch" >> grout.log
         export LD_LIBRARY_PATH="$CUR_DIR/grout/lib64:$LD_LIBRARY_PATH"
-        export SPRUCE_DEVICE="UNKNOWN"
         ./grout64
+        status=$?
+        if [ "$status" -ne 0 ]; then
+            echo "grout64 exited with status $status on '${PLATFORM:-<empty>}'" >> grout.log
+        fi
     ;;
 esac
