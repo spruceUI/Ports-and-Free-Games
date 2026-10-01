@@ -1,0 +1,127 @@
+<!-- trunk-ignore-all(markdownlint/MD033) -->
+<!-- trunk-ignore(markdownlint/MD041) -->
+<div align="center">
+
+  <img src=".github/resources/isotipo.png" height="180px" width="auto" alt="romm-grout logo">
+  <br />
+  <img src=".github/resources/logotipo.png" height="45px" width="auto" alt="romm grout logotype">
+    <h3 style="font-size: 25px;">
+      A RomM Client for your retro doo-dad.
+    </h3>
+
+[Allium][allium] · [ArkOS][arkos] · [Batocera][batocera] · [dArkOS][darkos] · [Knulli][knulli] · [Koriki][koriki] · [MinUI][minui]
+
+[muOS][muos] · [NextUI][nextui] · [Onion][onion] · [ROCKNIX][rocknix] · [Spruce][spruce] · [SprigUI][sprigui] · [TwigUI][twigui] · [TrimUI][trimui]
+
+<br>
+
+
+[![docs-badge-img]][docs-badge]
+[![release-badge-img]][release-badge]
+[![stars-badge-img]][stars-badge]
+[![downloads-badge-img]][downloads-badge]
+[![discord-badge-img]][discord-badge]
+
+![Grout demo](docs/resources/webp/preview.webp "Grout demo")
+
+</div>
+
+---
+
+> [!IMPORTANT]
+> Grout aggressively adopts new RomM features.
+>
+> The required RomM version matches the first three components of Grout's version number.
+> The fourth component is for Grout-specific patches.
+>
+> Grout may still function on older RomM versions, but support will not be provided.
+
+---
+
+## Documentation
+
+Full documentation is available at **[grout.romm.app](https://grout.romm.app)**.
+
+| Guide                                                        | Description                            |
+|--------------------------------------------------------------|----------------------------------------|
+| [Quick Start](https://grout.romm.app/getting-started/)       | Get up and running in 5 steps          |
+| [User Guide](https://grout.romm.app/usage/guide/)            | Complete feature documentation         |
+| [Settings Reference](https://grout.romm.app/usage/settings/) | All settings explained                 |
+| [Save Sync Guide](https://grout.romm.app/usage/save-sync/)   | Keep saves synchronized across devices |
+
+---
+
+## Development & Contributing
+
+Interested in contributing? We'd love your help!
+
+| Guide                                                                 | Description                                    |
+|-----------------------------------------------------------------------|------------------------------------------------|
+| [Contributing Guide](https://grout.romm.app/contributing/)            | How to contribute code, translations, and more |
+| [Development Guide](https://grout.romm.app/contributing/development/) | Set up your local environment and build Grout  |
+
+---
+
+## Need Help? Found a Bug? Have an Idea?
+
+Please [create an issue](https://github.com/rommapp/grout/issues/new/choose) and fill out the template completely.
+
+---
+
+## Contributors
+
+Grout is built by the community for the community.
+
+Thank you to everyone who has helped make this project better!
+
+See the full list of [Contributors](https://grout.romm.app/contributing/kudos/).
+
+---
+
+## Spread Joy!
+
+A significant amount of time has been spent building Grout.
+
+If you enjoy using Grout and feel inclined to pay it forward, go do something nice for someone! ❤️
+
+✌🏻
+
+<!-- CFW Links -->
+
+[allium]: https://github.com/goweiwen/Allium
+[arkos]: https://github.com/christianhaitian/arkos
+[darkos]: https://github.com/christianhaitian/dArkOS
+[batocera]: https://batocera.org
+[knulli]: https://knulli.org
+[koriki]: https://github.com/Rparadise-Team/Koriki
+[minui]: https://github.com/shauninman/MinUI
+[muos]: https://muos.dev
+[nextui]: https://nextui.loveretro.games
+[onion]: https://onionui.github.io
+[rocknix]: https://rocknix.org
+[spruce]: https://spruceui.github.io/
+[sprigui]: https://github.com/spruceUI/sprigUI
+[twigui]: https://github.com/spruceUI/twigUI
+[trimui]: https://github.com/trimui
+
+<!-- Badges -->
+
+[docs-badge-img]: https://img.shields.io/badge/user%20guide-007C77?style=for-the-badge
+
+[docs-badge]: https://grout.romm.app/usage/guide/
+
+[release-badge-img]: https://img.shields.io/github/v/release/rommapp/grout?sort=semver&style=for-the-badge&color=007C77
+
+[release-badge]: https://github.com/rommapp/grout/releases
+
+[stars-badge-img]: https://img.shields.io/github/stars/rommapp/grout?style=for-the-badge&color=007C77
+
+[stars-badge]: https://github.com/rommapp/grout/stargazers
+
+[downloads-badge-img]: https://img.shields.io/github/downloads/rommapp/grout/total?style=for-the-badge&color=007C77
+
+[downloads-badge]: https://github.com/rommapp/grout/releases
+
+[discord-badge-img]: https://img.shields.io/badge/discord-7289da?style=for-the-badge&color=007C77
+
+[discord-badge]: https://discord.gg/P5HtHnhUDH

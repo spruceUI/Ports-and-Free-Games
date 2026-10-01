@@ -67,8 +67,8 @@ jobs:
               requires_files="$(jq -r '.requires_files // false' "$game_json")"
               hidden="$(jq -r '.hidden // false' "$game_json")"
 
-              # Check for Roms/ directory
-              if [ ! -d "${game_dir}Roms" ]; then
+              # Check for Roms/ directory for games; Apps don't require one
+              if [ "$group_name" != "Apps" ] && [ ! -d "${game_dir}Roms" ]; then
                 echo "WARNING: No Roms/ directory in $game_dir — skipping archive creation"
                 continue
               fi
@@ -100,17 +100,42 @@ jobs:
 
               # Collect boxart
               boxart_found=false
-              for img in "${game_dir}"Roms/*/Imgs/*.png; do
-                if [ -f "$img" ]; then
-                  target_img="${BOXART_STAGE}/${display}.png"
-                  cp "$img" "$target_img"
-                  # Resize to 450x450 max, preserving aspect ratio
-                  convert "$target_img" -resize 450x450\> "$target_img"
-                  echo "  BOXART: $(basename "$img") -> Imgs/${display}.png"
-                  boxart_found=true
-                  break  # Take the first matching image
+
+              if [ "$group_name" = "Apps" ]; then
+                app_name="${game_dir#Apps/}"
+                app_name="${app_name%/}"
+                config_file="${game_dir}App/${app_name}/config.json"
+                icon="$(jq -r '.icon // ""' "$config_file")"
+
+                if [ -n "$icon" ]; then
+                  if [ "${icon#/mnt/SDCARD/App/}" != "$icon" ]; then
+                    icon_path="Apps/${icon#/mnt/SDCARD/App/}"
+                  else
+                    icon_path="${game_dir}${icon}"
+                  fi
+
+                  if [ -f "$icon_path" ]; then
+                    target_img="${BOXART_STAGE}/${display}.png"
+                    cp "$icon_path" "$target_img"
+                    convert "$target_img" -resize 450x450\> "$target_img"
+                    echo "  BOXART: $(basename "$icon_path") -> Imgs/${display}.png"
+                    boxart_found=true
+                  fi
                 fi
-              done
+              else
+                for img in "${game_dir}"Roms/*/Imgs/*.png; do
+                  if [ -f "$img" ]; then
+                    target_img="${BOXART_STAGE}/${display}.png"
+                    cp "$img" "$target_img"
+                    # Resize to 450x450 max, preserving aspect ratio
+                    convert "$target_img" -resize 450x450\> "$target_img"
+                    echo "  BOXART: $(basename "$img") -> Imgs/${display}.png"
+                    boxart_found=true
+                    break  # Take the first matching image
+                  fi
+                done
+              fi
+
               if [ "$boxart_found" = "false" ]; then
                 echo "  BOXART: none found for $display"
               fi
