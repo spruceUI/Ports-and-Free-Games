@@ -105,13 +105,19 @@ jobs:
                 app_name="${game_dir#Apps/}"
                 app_name="${app_name%/}"
                 config_file="${game_dir}App/${app_name}/config.json"
-                icon="$(jq -r '.icon // ""' "$config_file")"
+                icon=""
+                if [ -f "$config_file" ]; then
+                  icon="$(jq -r '.icon // ""' "$config_file" 2>/dev/null || true)"
+                else
+                  echo "  WARNING: no ${config_file}"
+                fi
 
                 if [ -n "$icon" ]; then
-                  if [ "${icon#/mnt/SDCARD/App/}" != "$icon" ]; then
-                    icon_path="Apps/${icon#/mnt/SDCARD/App/}"
+                  # An icon path is either absolute on the card or relative to the app folder
+                  if [ "${icon#/mnt/SDCARD/}" != "$icon" ]; then
+                    icon_path="${game_dir}${icon#/mnt/SDCARD/}"
                   else
-                    icon_path="${game_dir}${icon}"
+                    icon_path="${game_dir}App/${app_name}/${icon}"
                   fi
 
                   if [ -f "$icon_path" ]; then
