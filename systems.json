@@ -1,5 +1,6 @@
 {
   "Amiga": { "icon": "amiga", "emu": "AMIGA" },
+  "Apps": { "icon": "iconfresh", "emu": ""},
   "Arcade": { "icon": "arcade", "emu": "ARCADE" },
   "Arduboy": { "icon": "arduboy", "emu": "ARDUBOY" },
   "Atari 2600": { "icon": "atari", "emu": "ATARI" },
