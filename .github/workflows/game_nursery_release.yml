@@ -4,224 +4,323 @@ on:
   workflow_dispatch:
     inputs:
       tag:
-        description: 'Release tag'
-        required: false
-        default: 'Nursery'
+        description: Release tag
+        required: true
+        default: Nursery
+
+permissions:
+  contents: write
 
 jobs:
-  build:
+  release:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
 
       - name: Install dependencies
-        run: sudo apt-get update && sudo apt-get install -y p7zip-full jq imagemagick
-
-      - name: Build game archives, nursery config, and boxart bundle
-        env:
-          TAG: ${{ inputs.tag || 'Nursery' }}
-          REPO: ${{ github.repository }}
         run: |
-          set -euo pipefail
+          sudo apt-get update
+          sudo apt-get install -y p7zip-full jq imagemagick
 
+      - name: Build release
+        env:
+          TAG: ${{ inputs.tag }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -e
+
+          REPO="$GITHUB_REPOSITORY"
           ARCHIVE_DIR="_archives"
           BOXART_STAGE="_boxart/Imgs"
           CONFIG_FILE="_output/nursery_config"
+          CONFIG_V2_FILE="_output/nursery_config_v2"
+          BOXART_ARCHIVE="_output/boxart.7z"
+
           mkdir -p "$ARCHIVE_DIR" "$BOXART_STAGE" "_output"
 
-          # Temporary files for building the config JSON
           CONFIG_ENTRIES_FILE=$(mktemp)
           DESC_ENTRIES_FILE=$(mktemp)
+          V2_CONFIG_ENTRIES_FILE=$(mktemp)
+          V2_DESC_ENTRIES_FILE=$(mktemp)
+          V2_MIN_VERSION_ENTRIES_FILE=$(mktemp)
+          V2_DEVICES_ENTRIES_FILE=$(mktemp)
 
           RELEASE_URL="https://github.com/${REPO}/releases/download/${TAG}"
 
-          # Groups to process (top-level directories that contain game subdirectories)
-          SKIP_DIRS=".github|_archives|_boxart|_output|info"
+          # Collect artwork for either version of the metadata.
+          collect_boxart() {
+            local group_name="$1"
+            local game_dir="$2"
+            local display="$3"
+            local app_name icon icon_path boxart_src app_config
 
-          for group_dir in */; do
-            group_name="${group_dir%/}"
+            boxart_src=""
 
-            # Skip non-game directories
-            if echo "$group_name" | grep -qE "^($SKIP_DIRS)$"; then
-              continue
+            if [ "$group_name" = "Apps" ]; then
+              app_name=$(basename "$game_dir")
+              app_config="${game_dir}App/${app_name}/config.json"
+
+              if [ -f "$app_config" ]; then
+                icon=$(jq -r '.icon // empty' "$app_config")
+
+                if [ -n "$icon" ]; then
+                  case "$icon" in
+                    /mnt/SDCARD/App/*)
+                      icon_path="Apps/${icon#/mnt/SDCARD/App/}"
+                      ;;
+                    /*)
+                      icon_path="$icon"
+                      ;;
+                    *)
+                      icon_path="${game_dir}${icon}"
+                      ;;
+                  esac
+
+                  [ -f "$icon_path" ] && boxart_src="$icon_path"
+                fi
+              fi
+            else
+              for boxart_src in "${game_dir}"Roms/*/Imgs/*.png; do
+                if [ -f "$boxart_src" ]; then
+                  break
+                fi
+                boxart_src=""
+              done
             fi
 
-            # Skip files (README.md, etc.)
+            if [ -n "$boxart_src" ] && [ -f "$boxart_src" ]; then
+              cp "$boxart_src" "$BOXART_STAGE/${display}.png"
+              convert "$BOXART_STAGE/${display}.png" \
+                -resize '450x450>' "$BOXART_STAGE/${display}.png"
+            fi
+          }
+
+          # ------------------------------------------------------------
+          # Existing game.json processing.
+          # Keep this path as the source of the original nursery_config.
+          # ------------------------------------------------------------
+          for group_dir in */; do
             [ -d "$group_dir" ] || continue
+
+            group_name="${group_dir%/}"
+
+            case "$group_name" in
+              .github|_archives|_boxart|_output|info)
+                continue
+                ;;
+            esac
 
             for game_dir in "$group_dir"*/; do
               [ -d "$game_dir" ] || continue
 
               game_json="${game_dir}game.json"
-              if [ ! -f "$game_json" ]; then
-                echo "WARNING: No game.json in $game_dir — skipping"
+              [ -f "$game_json" ] || {
+                echo "Skipping ${game_dir}: no game.json"
+                continue
+              }
+
+              display=$(jq -r '.display' "$game_json")
+              shortname=$(jq -r '.shortname // ""' "$game_json")
+              description=$(jq -r '.description // ""' "$game_json")
+              requires_files=$(jq -r '.requires_files // false' "$game_json")
+              hidden=$(jq -r '.hidden // false' "$game_json")
+
+              # Non-app games must have a Roms directory.
+              if [ "$group_name" != "Apps" ] &&
+                 [ ! -d "${game_dir}Roms" ]; then
+                echo "Skipping ${game_dir}: no Roms directory"
                 continue
               fi
 
-              # Read metadata
-              display="$(jq -r '.display' "$game_json")"
-              shortname="$(jq -r '.shortname // ""' "$game_json")"
-              description="$(jq -r '.description // ""' "$game_json")"
-              requires_files="$(jq -r '.requires_files // false' "$game_json")"
-              hidden="$(jq -r '.hidden // false' "$game_json")"
-
-              # Check for Roms/ directory for games; Apps don't require one
-              if [ "$group_name" != "Apps" ] && [ ! -d "${game_dir}Roms" ]; then
-                echo "WARNING: No Roms/ directory in $game_dir — skipping archive creation"
-                continue
-              fi
-
-              # Build archive name: replace spaces and special chars with dots
-              archive_name="$(echo "$display" | sed "s/[^a-zA-Z0-9]/./g" | sed 's/\.\.*/./g; s/^\.\|\.$//')"
+              archive_name=$(printf '%s' "$display" |
+                sed 's/[^A-Za-z0-9._-]/_/g')
               archive_file="${archive_name}.7z"
 
-              # Always build archive for every game (include all dirs: Roms/, BIOS/, Emu/, etc.)
-              # -mf=off: modern 7-Zip auto-applies its ARM64 BCJ filter to entries
-              # holding aarch64 binaries, and the 7zr on the devices does not know
-              # that filter - it just reports "unable to extract". The spruce
-              # release archive disables filters for the same reason.
-              echo "ARCHIVE: $game_dir -> $archive_file"
-              (cd "$game_dir" && 7z a -mx=9 -mf=off "../../${ARCHIVE_DIR}/${archive_file}" . -x'!game.json') > /dev/null
+              (
+                cd "$game_dir"
+                7z a -mx=9 -mf=off "../../${ARCHIVE_DIR}/${archive_file}" . \
+                  -x'!game.json'
+              )
 
-              # Skip hidden games for config and boxart
-              if [ "$hidden" = "true" ]; then
-                echo "  HIDDEN: $display — archive built, skipping config/boxart"
-                continue
-              fi
+              # Hidden entries still get archives, but not config/artwork.
+              [ "$hidden" = "true" ] && continue
 
-              # Use shortname for download display if available
-              if [ -n "$shortname" ] && [ "$shortname" != "" ]; then
-                dl_name="$shortname"
-              else
-                dl_name="$display"
-              fi
+              dl_name="${shortname:-$display}"
+              escaped_dl_name=$(printf '%s' "$dl_name" |
+                sed "s/'/'\\\\''/g")
+              escaped_dl_url=$(printf '%s' "${RELEASE_URL}/${archive_file}" |
+                sed "s/'/'\\\\''/g")
 
-              # Collect boxart
-              boxart_found=false
-
-              if [ "$group_name" = "Apps" ]; then
-                app_name="${game_dir#Apps/}"
-                app_name="${app_name%/}"
-                config_file="${game_dir}App/${app_name}/config.json"
-                icon=""
-                if [ -f "$config_file" ]; then
-                  icon="$(jq -r '.icon // ""' "$config_file" 2>/dev/null || true)"
-                else
-                  echo "  WARNING: no ${config_file}"
-                fi
-
-                if [ -n "$icon" ]; then
-                  # An icon path is either absolute on the card or relative to the app folder
-                  if [ "${icon#/mnt/SDCARD/}" != "$icon" ]; then
-                    icon_path="${game_dir}${icon#/mnt/SDCARD/}"
-                  else
-                    icon_path="${game_dir}App/${app_name}/${icon}"
-                  fi
-
-                  if [ -f "$icon_path" ]; then
-                    target_img="${BOXART_STAGE}/${display}.png"
-                    cp "$icon_path" "$target_img"
-                    convert "$target_img" -resize 450x450\> "$target_img"
-                    echo "  BOXART: $(basename "$icon_path") -> Imgs/${display}.png"
-                    boxart_found=true
-                  fi
-                fi
-              else
-                for img in "${game_dir}"Roms/*/Imgs/*.png; do
-                  if [ -f "$img" ]; then
-                    target_img="${BOXART_STAGE}/${display}.png"
-                    cp "$img" "$target_img"
-                    # Resize to 450x450 max, preserving aspect ratio
-                    convert "$target_img" -resize 450x450\> "$target_img"
-                    echo "  BOXART: $(basename "$img") -> Imgs/${display}.png"
-                    boxart_found=true
-                    break  # Take the first matching image
-                  fi
-                done
-              fi
-
-              if [ "$boxart_found" = "false" ]; then
-                echo "  BOXART: none found for $display"
-              fi
-
-              # Build download URL
-              dl_url="${RELEASE_URL}/${archive_file}"
-
-              # Escape single quotes in names for shell command
-              escaped_dl_name="$(echo "$dl_name" | sed "s/'/'\\\\''/g")"
-              escaped_dl_url="$(echo "$dl_url" | sed "s/'/'\\\\''/g")"
-
-              # Add nursery_config entry
+              download_command="/mnt/SDCARD/App/GameNursery/download_game.sh '${escaped_dl_name}' '${escaped_dl_url}' '${requires_files}'"
               config_key="${group_name}/${display}"
-              config_value="/mnt/SDCARD/App/GameNursery/download_game.sh '${escaped_dl_name}' '${escaped_dl_url}' '${requires_files}'"
 
-              # Write as JSON key-value pairs (will be assembled later)
-              printf '%s\n' "$(jq -n --arg k "$config_key" --arg v "$config_value" '{($k): $v}')" >> "$CONFIG_ENTRIES_FILE"
+              jq -n \
+                --arg key "$config_key" \
+                --arg value "$download_command" \
+                '{($key): $value}' >> "$CONFIG_ENTRIES_FILE"
 
-              # Add description if non-empty
               if [ -n "$description" ]; then
-                printf '%s\n' "$(jq -n --arg k "$display" --arg v "$description" '{($k): $v}')" >> "$DESC_ENTRIES_FILE"
+                jq -n \
+                  --arg key "$display" \
+                  --arg value "$description" \
+                  '{($key): $value}' >> "$DESC_ENTRIES_FILE"
               fi
+
+              collect_boxart "$group_name" "$game_dir" "$display"
             done
           done
 
-          # Assemble final nursery_config JSON
-          echo "Assembling nursery_config..."
+          # Original nursery_config construction.
+          CONFIG_JSON=$(jq -s 'add // {}' "$CONFIG_ENTRIES_FILE")
+          DESC_JSON=$(jq -s 'add // {}' "$DESC_ENTRIES_FILE")
 
-          # Merge all config entries into one object
-          CONFIG_JSON="$(jq -s 'add // {}' "$CONFIG_ENTRIES_FILE")"
+          echo "$CONFIG_JSON" |
+            jq --argjson descs "$DESC_JSON" \
+              '. + {descriptions: $descs}' > "$CONFIG_FILE"
 
-          # Merge all description entries into one object
-          DESC_JSON="$(jq -s 'add // {}' "$DESC_ENTRIES_FILE")"
+          # ------------------------------------------------------------
+          # v2-only processing.
+          # nursery_config_v2 starts with the completed v1 config, then
+          # receives entries from game_v2.json directories.
+          # ------------------------------------------------------------
+          for group_dir in */; do
+            [ -d "$group_dir" ] || continue
 
-          # Combine: add descriptions key to config
-          echo "$CONFIG_JSON" | jq --argjson descs "$DESC_JSON" '. + {descriptions: $descs}' > "$CONFIG_FILE"
+            group_name="${group_dir%/}"
 
-          echo "nursery_config written with $(echo "$CONFIG_JSON" | jq 'length') games"
+            case "$group_name" in
+              .github|_archives|_boxart|_output|info)
+                continue
+                ;;
+            esac
 
-          # Build boxart.7z
-          if [ "$(ls -A "$BOXART_STAGE" 2>/dev/null)" ]; then
-            echo "Building boxart.7z..."
-            (cd _boxart && 7z a -mx=9 "../_output/boxart.7z" Imgs/) > /dev/null
-            echo "boxart.7z created with $(ls "$BOXART_STAGE" | wc -l) images"
-          else
-            echo "WARNING: No boxart images found"
+            for game_dir in "$group_dir"*/; do
+              [ -d "$game_dir" ] || continue
+
+              game_v2_json="${game_dir}game_v2.json"
+              [ -f "$game_v2_json" ] || continue
+
+              # v2 processing is for v2-only directories.
+              [ -f "${game_dir}game.json" ] && continue
+
+              display=$(jq -r '.display' "$game_v2_json")
+              shortname=$(jq -r '.shortname // ""' "$game_v2_json")
+              description=$(jq -r '.description // ""' "$game_v2_json")
+              requires_files=$(jq -r '.requires_files // false' "$game_v2_json")
+              hidden=$(jq -r '.hidden // false' "$game_v2_json")
+
+              if [ "$group_name" != "Apps" ] &&
+                 [ ! -d "${game_dir}Roms" ]; then
+                echo "Skipping ${game_dir}: no Roms directory"
+                continue
+              fi
+
+              archive_name=$(printf '%s' "$display" |
+                sed 's/[^A-Za-z0-9._-]/_/g')
+              archive_file="${archive_name}.7z"
+
+              (
+                cd "$game_dir"
+                7z a -mx=9 -mf=off "../../${ARCHIVE_DIR}/${archive_file}" . \
+                  -x'!game.json' \
+                  -x'!game_v2.json'
+              )
+
+              # Match v1 behavior: hidden entries get archives only.
+              [ "$hidden" = "true" ] && continue
+
+              dl_name="${shortname:-$display}"
+              escaped_dl_name=$(printf '%s' "$dl_name" |
+                sed "s/'/'\\\\''/g")
+              escaped_dl_url=$(printf '%s' "${RELEASE_URL}/${archive_file}" |
+                sed "s/'/'\\\\''/g")
+
+              download_command="/mnt/SDCARD/App/GameNursery/download_game.sh '${escaped_dl_name}' '${escaped_dl_url}' '${requires_files}'"
+              config_key="${group_name}/${display}"
+
+              jq -n \
+                --arg key "$config_key" \
+                --arg value "$download_command" \
+                '{($key): $value}' >> "$V2_CONFIG_ENTRIES_FILE"
+
+              if [ -n "$description" ]; then
+                jq -n \
+                  --arg key "$display" \
+                  --arg value "$description" \
+                  '{($key): $value}' >> "$V2_DESC_ENTRIES_FILE"
+              fi
+
+              # Store each compatibility field independently, keyed by
+              # the same entry key used in the config.
+              if jq -e 'has("min_spruce_version") and .min_spruce_version != null' \
+                "$game_v2_json" >/dev/null; then
+                min_version=$(jq -c '.min_spruce_version' "$game_v2_json")
+                jq -n \
+                  --arg key "$config_key" \
+                  --argjson value "$min_version" \
+                  '{($key): $value}' >> "$V2_MIN_VERSION_ENTRIES_FILE"
+              fi
+
+              if jq -e 'has("devices") and .devices != null' \
+                "$game_v2_json" >/dev/null; then
+                devices=$(jq -c '.devices' "$game_v2_json")
+                jq -n \
+                  --arg key "$config_key" \
+                  --argjson value "$devices" \
+                  '{($key): $value}' >> "$V2_DEVICES_ENTRIES_FILE"
+              fi
+
+              collect_boxart "$group_name" "$game_dir" "$display"
+            done
+          done
+
+          # Merge the v2-only entries into a copy of the completed v1 config.
+          V2_CONFIG_JSON=$(jq -s 'add // {}' "$V2_CONFIG_ENTRIES_FILE")
+          V2_DESC_JSON=$(jq -s 'add // {}' "$V2_DESC_ENTRIES_FILE")
+          V2_MIN_VERSION_JSON=$(jq -s 'add // {}' "$V2_MIN_VERSION_ENTRIES_FILE")
+          V2_DEVICES_JSON=$(jq -s 'add // {}' "$V2_DEVICES_ENTRIES_FILE")
+
+          cp "$CONFIG_FILE" "$CONFIG_V2_FILE"
+
+          jq \
+            --argjson entries "$V2_CONFIG_JSON" \
+            --argjson descs "$V2_DESC_JSON" \
+            --argjson min_versions "$V2_MIN_VERSION_JSON" \
+            --argjson devices "$V2_DEVICES_JSON" \
+            '
+              . + $entries
+              | .descriptions = ((.descriptions // {}) + $descs)
+              | .min_spruce_version = ((.min_spruce_version // {}) + $min_versions)
+              | .devices = ((.devices // {}) + $devices)
+            ' "$CONFIG_V2_FILE" > "${CONFIG_V2_FILE}.tmp"
+
+          mv "${CONFIG_V2_FILE}.tmp" "$CONFIG_V2_FILE"
+
+          # Build one shared boxart archive for both config versions.
+          rm -f "$BOXART_ARCHIVE"
+
+          if find "$BOXART_STAGE" -type f -print -quit | grep -q .; then
+            (
+              cd _boxart
+              7z a -t7z -mx=9 "../${BOXART_ARCHIVE}" Imgs
+            )
           fi
 
-          # Cleanup temp files
-          rm -f "$CONFIG_ENTRIES_FILE" "$DESC_ENTRIES_FILE"
+          # Recreate the release and upload the archives/configs.
+          gh release view "$TAG" >/dev/null 2>&1 &&
+            gh release delete "$TAG" --yes --cleanup-tag || true
 
-          echo ""
-          echo "=== Build Summary ==="
-          echo "Archives: $(ls "$ARCHIVE_DIR"/*.7z 2>/dev/null | wc -l)"
-          echo "Config entries: $(jq 'del(.descriptions) | length' "$CONFIG_FILE")"
-          echo "Boxart images: $(ls "$BOXART_STAGE" 2>/dev/null | wc -l)"
-
-      - name: Create or update release
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          TAG: ${{ inputs.tag || 'Nursery' }}
-        run: |
-          # Delete existing release if present, then create fresh
-          echo "Checking for existing release '$TAG'..."
-          if gh release view "$TAG" >/dev/null 2>&1; then
-            echo "Deleting existing release '$TAG'..."
-            gh release delete "$TAG" --yes --cleanup-tag 2>/dev/null || true
-          fi
-
-          echo "Creating release '$TAG'..."
           gh release create "$TAG" \
-            --title "Game Nursery" \
-            --notes "Auto-generated Game Nursery release. Contains individual game archives, nursery_config, and boxart bundle." \
-            _archives/*.7z _output/nursery_config systems.json
+            "$ARCHIVE_DIR"/*.7z \
+            "$CONFIG_FILE" \
+            "$CONFIG_V2_FILE" \
+            systems.json \
+            --title "$TAG" \
+            --notes "Game Nursery release"
 
-          if [ -f _output/boxart.7z ]; then
-            echo "Uploading boxart.7z..."
-            gh release upload "$TAG" _output/boxart.7z --clobber
+          # Artwork is shared by v1 and v2.
+          if [ -f "$BOXART_ARCHIVE" ]; then
+            gh release upload "$TAG" "$BOXART_ARCHIVE" --clobber
           fi
-
-          echo ""
-          echo "Release '$TAG' created successfully."
-          echo "URL: https://github.com/${{ github.repository }}/releases/tag/$TAG"
