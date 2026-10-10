@@ -105,21 +105,21 @@ Example `game_v2.json`:
   "description": "A short description of the game.",
   "requires_files": false,
   "hidden": false,
-  "min_spruce_version": "4.5.0",
+  "min_cfw_version": "4.5.0",
   "devices": ["TRIMUI_BRICK", "MIYOO_FLIP"]
 }
 ```
 
 The standard metadata fields work the same way as in `game.json`. The additional fields are:
 
-* `min_spruce_version`: Optional minimum spruceOS version required for the entry, expressed as a version string.
+* `min_cfw_version`: Optional minimum spruceOS version required for the entry, expressed as a version string.
 * `devices`: Optional array of supported device identifiers. Use the identifiers recognized by spruceOS for the intended devices.
 
 Both compatibility fields are passed through to `nursery_config_v2` as separate top-level dictionaries, keyed by the entry's `System Group/Display Name`. For example:
 
 ```json
 {
-  "min_spruce_version": {
+  "min_cfw_version": {
     "Game Boy/Cool Quest": "4.5.0"
   },
   "devices": {
@@ -158,7 +158,7 @@ A `game_v2.json` entry still gets an archive and can provide box art in the same
 
 | Field                | Description                                     |
 | -------------------- | ----------------------------------------------- |
-| `min_spruce_version` | Minimum spruceOS version required for the entry |
+| `min_cfw_version` | Minimum spruceOS version required for the entry |
 | `devices`            | Array of supported device identifiers           |
 
 Example:
@@ -170,7 +170,7 @@ Example:
   "description": "",
   "requires_files": false,
   "hidden": false,
-  "min_spruce_version": "",
+  "min_cfw_version": "",
   "devices": []
 }
 ```

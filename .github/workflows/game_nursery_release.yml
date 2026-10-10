@@ -254,9 +254,9 @@ jobs:
 
               # Store each compatibility field independently, keyed by
               # the same entry key used in the config.
-              if jq -e 'has("min_spruce_version") and .min_spruce_version != null' \
+              if jq -e 'has("min_cfw_version") and .min_cfw_version != null' \
                 "$game_v2_json" >/dev/null; then
-                min_version=$(jq -c '.min_spruce_version' "$game_v2_json")
+                min_version=$(jq -c '.min_cfw_version' "$game_v2_json")
                 jq -n \
                   --arg key "$config_key" \
                   --argjson value "$min_version" \
@@ -292,7 +292,7 @@ jobs:
             '
               . + $entries
               | .descriptions = ((.descriptions // {}) + $descs)
-              | .min_spruce_version = ((.min_spruce_version // {}) + $min_versions)
+              | .min_cfw_version = ((.min_cfw_version // {}) + $min_versions)
               | .devices = ((.devices // {}) + $devices)
             ' "$CONFIG_V2_FILE" > "${CONFIG_V2_FILE}.tmp"
 
