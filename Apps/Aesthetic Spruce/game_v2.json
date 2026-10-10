@@ -1,0 +1,20 @@
+{
+  "display": "Aesthetic Spruce",
+  "shortname": "",
+  "description": "Create minimal duo-tone themes on your handheld",
+  "requires_files": false,
+  "hidden": false,
+  "devices": [
+    "MIYOO_FLIP",
+    "TRIMUI_BRICK",
+    "TRIMUI_BRICK_PRO",
+    "TRIMUI_SMART_PRO",
+    "TRIMUI_SMART_PRO_S",
+    "MAGICX_A133P",
+    "GKD_PIXEL2",
+    "ANBERNIC_RGXX",
+    "RGB30",
+    "MINILOONG_POCKET1"
+  ],
+  "min_spruce_version": "4.5.0"
+}

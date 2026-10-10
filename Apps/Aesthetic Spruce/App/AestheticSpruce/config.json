@@ -1,0 +1,19 @@
+{
+  "label": "Aesthetic Spruce",
+  "icon": "aestheticspruce.png",
+  "launch": "launch.sh",
+  "description": "Create minimal duo-tone themes on your handheld",
+  "devices": [
+    "MIYOO_FLIP",
+    "TRIMUI_BRICK",
+    "TRIMUI_BRICK_PRO",
+    "TRIMUI_SMART_PRO",
+    "TRIMUI_SMART_PRO_S",
+    "MAGICX_A133P",
+    "GKD_PIXEL2",
+    "ANBERNIC_RGXX",
+    "RGB30",
+    "MINILOONG_POCKET1"
+  ],
+  "hideInSimpleMode": false
+}
