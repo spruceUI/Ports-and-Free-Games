@@ -141,7 +141,11 @@ jobs:
 
               (
                 cd "$game_dir"
-                7z a -mx=9 -mf=off "../../${ARCHIVE_DIR}/${archive_file}" . \
+                # Apps reach the Miyoo Mini too, where 7zr has ~50 MB to
+                # unpack with; -mx=9 alone picks a 64 MB dictionary.
+                dict=""
+                [ "$group_name" = "Apps" ] && dict="-md=16m"
+                7z a -mx=9 -mf=off $dict "../../${ARCHIVE_DIR}/${archive_file}" . \
                   -x'!game.json'
               )
 
@@ -224,7 +228,11 @@ jobs:
 
               (
                 cd "$game_dir"
-                7z a -mx=9 -mf=off "../../${ARCHIVE_DIR}/${archive_file}" . \
+                # Apps reach the Miyoo Mini too, where 7zr has ~50 MB to
+                # unpack with; -mx=9 alone picks a 64 MB dictionary.
+                dict=""
+                [ "$group_name" = "Apps" ] && dict="-md=16m"
+                7z a -mx=9 -mf=off $dict "../../${ARCHIVE_DIR}/${archive_file}" . \
                   -x'!game.json' \
                   -x'!game_v2.json'
               )
