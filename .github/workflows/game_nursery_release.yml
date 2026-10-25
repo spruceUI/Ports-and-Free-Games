@@ -66,15 +66,16 @@ jobs:
                 icon=$(jq -r '.icon // empty' "$app_config")
 
                 if [ -n "$icon" ]; then
+                  # Absolute on the card, or relative to the app's own folder
                   case "$icon" in
-                    /mnt/SDCARD/App/*)
-                      icon_path="Apps/${icon#/mnt/SDCARD/App/}"
+                    /mnt/SDCARD/*)
+                      icon_path="${game_dir}${icon#/mnt/SDCARD/}"
                       ;;
                     /*)
                       icon_path="$icon"
                       ;;
                     *)
-                      icon_path="${game_dir}${icon}"
+                      icon_path="${game_dir}App/${app_name}/${icon}"
                       ;;
                   esac
 
