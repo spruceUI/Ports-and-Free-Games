@@ -59,8 +59,9 @@ export_sdl_gamecontroller_map
 # The MagicX ones are NOT: their platform cfgs export a:b0,b:b1,x:b2,y:b3 over a pad that emits the
 # face buttons positionally (304 south, 305 east, 307 north, 308 west), and PyUI's own table reads
 # 305=A 304=B 308=X 307=Y, so SDL's a/x land on the buttons labelled B/Y. Measured on a Zero 40.
+# BrickOakMOSS is the Brick on oakMOSS: the same trimui_inputd "TRIMUI Player1" pad as the stock Brick.
 case "$PLATFORM" in
-    Brick | BrickPro | SmartPro | SmartProS | Flip | Zero28 | Zero40 | XU20)
+    Brick | BrickOakMOSS | BrickPro | SmartPro | SmartProS | Flip | Zero28 | Zero40 | XU20)
         export AESTHETIC_SWAP_AB=1 AESTHETIC_SWAP_XY=1 ;;   # 304->B 305->A 307->Y 308->X
     Miniloong | Pixel2)
         export AESTHETIC_SWAP_AB=1 ;;                       # 304->B 305->A, X/Y already in place

@@ -41,10 +41,14 @@ state.THEME_FIELDS = {
 	{ key = "gameListView", type = "string", default = "Text + Box Art" }, -- gameSelectionViewType
 	{ key = "systemsView", type = "string", default = "Grid" }, -- systemSelectViewType
 	{ key = "appsView", type = "string", default = "Icons + Details" }, -- appMenuViewType
-	{ key = "showRecents", type = "boolean", default = true }, -- recentsEnabled
-	{ key = "showCollections", type = "boolean", default = true }, -- collectionsEnabled
+	{ key = "showRecents", type = "boolean", default = false }, -- recentsEnabled (SPRUCE turns it off)
+	{ key = "showCollections", type = "boolean", default = false }, -- collectionsEnabled (PyUI default too)
 	{ key = "showFavorites", type = "boolean", default = true }, -- favoritesEnabled
 	{ key = "showIndex", type = "boolean", default = true }, -- showIndexText / includeIndexText ("A 02/13")
+	{ key = "showVolumeNumber", type = "boolean", default = true }, -- displayVolumeNumbers (SPRUCE sets it)
+	{ key = "topBarShowsGame", type = "boolean", default = true }, -- setTopBarTextToGameSelection
+	{ key = "fullScreenGridFit", type = "string", default = "Fit" }, -- fullScreenGridGameMenuResizeType
+	{ key = "showMainMenuTitle", type = "boolean", default = true }, -- false emits mainMenuTitle ""
 	{ key = "screensaverMinutes", type = "number", default = 1 }, -- screensaver.screensaverTimeoutSec, 0 = off
 }
 
@@ -58,6 +62,54 @@ state.COLOR_FIELDS = {
 }
 
 -- Application (non-theme) state
+--- Main-menu tiles that fit the device, the way the stock SPRUCE theme is laid out.
+---
+--- PyUI draws the main menu as mainMenuRowCount (default 1) rows of mainMenuColCount (default
+--- int(4 * width_multiplier): 4 on every supported panel except 16:9, where it is 5) and drops
+--- tiles that do not fit. SPRUCE overrides that grid on some panels (MAIN_MENU_GRID); elsewhere we
+--- follow PyUI's own rule rather than invent one. Games, Apps and Settings are always on, so the
+--- spare slots go to Favorites first, then Recents, then Collections -- SPRUCE's own set on a
+--- 4-wide row, all six on the Zero 40's 2x3. A list scrolls, so it shows everything.
+
+-- SPRUCE's config_<WxH>.json grids that differ from one PyUI row (checked against 4.6.1)
+state.MAIN_MENU_GRID = {
+	["480x800"] = { cols = 2, rows = 3, textYOffset = -16 }, -- Zero 40 portrait (SPRUCE since 09-25)
+}
+
+--- cols, rows (and SPRUCE's multiRowGridTextYOffset, if any) of the main menu on a WxH panel
+function state.mainMenuGrid(w, h)
+	w, h = w or 640, h or 480
+	local g = state.MAIN_MENU_GRID[string.format("%dx%d", w, h)]
+	if g then
+		return g.cols, g.rows, g.textYOffset
+	end
+	if w <= 0 or h <= 0 then
+		return 4, 1
+	end
+	local scaleW, scaleH = w / 640, h / 480
+	local widthMultiplier = scaleW > scaleH and (((scaleW - scaleH) / scaleH) + 1) or 1
+	return math.max(4, math.min(5, math.floor(4 * widthMultiplier))), 1
+end
+
+--- Tiles that fit on this device's main menu (columns x rows)
+function state.mainMenuSlots()
+	local cols, rows = state.mainMenuGrid(state.screenWidth, state.screenHeight)
+	return cols * rows
+end
+
+--- Set the three optional tiles to this layout's defaults. Called on first run and whenever the
+--- home screen layout changes, so the rows always show what the layout will actually produce.
+function state.applyMainMenuDefaults()
+	if state.homeScreenLayout == "List" then
+		state.showRecents, state.showCollections, state.showFavorites = true, true, true
+		return
+	end
+	local spare = state.mainMenuSlots() - 3 -- Games, Apps and Settings are always shown
+	state.showFavorites = spare >= 1
+	state.showRecents = spare >= 2
+	state.showCollections = spare >= 3
+end
+
 state.applicationName = "Aesthetic Spruce"
 state.screenWidth = 0 -- set in main.lua
 state.screenHeight = 0 -- set in main.lua
@@ -159,6 +211,11 @@ function state.importTheme(t)
 			end
 			state[f.key] = f.default
 		end
+	end
+	-- No tile flag at all (every built-in preset): size the main menu to this device and the
+	-- snapshot's layout, as on first run; a snapshot naming any of them keeps its own choice
+	if t.showRecents == nil and t.showCollections == nil and t.showFavorites == nil then
+		state.applyMainMenuDefaults()
 	end
 	local colors = type(t.colors) == "table" and t.colors or {}
 	for _, c in ipairs(state.COLOR_FIELDS) do

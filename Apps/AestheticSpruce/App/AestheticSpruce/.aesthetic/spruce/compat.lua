@@ -8,14 +8,16 @@
 local compat = {}
 
 -- Base versions this build was verified on (hardware runs, theme loaded by PyUI)
-compat.TESTED_VERSIONS = { "4.3.6", "4.4.0", "4.4.3", "4.5.3" }
+compat.TESTED_VERSIONS = { "4.3.6", "4.4.0", "4.4.3", "4.5.3", "4.6.1" }
 -- Release families (major.minor) whose PyUI theme format this build targets. PyUI's
--- themes/theme.py and theme_patcher.py read the same layout from 4.3.0 to 4.5.3, and 4.5.2 stable
--- carries a theme loader byte-identical to the 4.5.3 nightly; 4.3.3 added the
+-- themes/theme.py and theme_patcher.py read the same layout from 4.3.0 to the 4.6.1 nightly
+-- (4.5.7 moved the patcher, unchanged, into default_theme_patcher.py; 4.6.0 changed neither,
+-- it only forces the game-list carousel in Kid Mode); 4.3.3 added the
 -- optional screensaver.lowPowerWhileIdle, 4.4.0 the optional screensaver.dimBacklight and
--- screensaver.widgets, 4.4.3 the optional ic-cheevos-mark and 4.5 the three bluetooth status icons
--- (all fall back to a PyUI or stock-theme default when a theme omits them).
-compat.SUPPORTED_FAMILIES = { "4.3", "4.4", "4.5" }
+-- screensaver.widgets, 4.4.3 the optional ic-cheevos-mark, 4.5 the three bluetooth status icons
+-- and 4.5.7 an optional shutdown image (all fall back to a PyUI or stock-theme default when a
+-- theme omits them).
+compat.SUPPORTED_FAMILIES = { "4.3", "4.4", "4.5", "4.6" }
 
 local PYUI_THEME_LOADER = "/mnt/SDCARD/App/PyUI/main-ui/themes/theme.py"
 -- Strings the loader must still contain for the generated layout to be understood

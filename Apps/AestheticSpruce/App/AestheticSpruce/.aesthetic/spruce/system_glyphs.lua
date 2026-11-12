@@ -25,7 +25,7 @@ glyphs.families = {
 	console = {
 		"fc", "fds", "sfc", "sgb", "sufami", "msu1", "satella", "n64", "md", "ms", "32X", "segasgone", "msumd",
 		"pce", "sgfx", "neogeo", "vdp", "ps", "saturn", "dc", "segacd", "neocd", "pcecd",
-		"atari", "5200", "7800", "jaguar", "col", "itv", "ody", "fairchild", "vectrex",
+		"atari", "5200", "7800", "jaguar", "col", "itv", "ody", "fairchild", "vectrex", "loopy",
 	},
 	arcade = { "arcade", "mame", "fbneo", "cps1", "cps2", "cps3", "naomi", "atomiswave" },
 	computer = { "amiga", "c64", "vic20", "cpc", "msx", "x68000", "zxs", "atarist", "atari800", "dos", "coco", "pc98" },
@@ -47,7 +47,7 @@ glyphs.apps = {
 	portmaster = "package", ppsspp = "gamepad", random = "shuffle", recents = "history",
 	restore = "database-backup", retroarch = "joystick", retroexpert = "wrench", rtc = "clock",
 	scraper = "images", sftpgo = "hard-drive", songo = "music", SSH = "terminal", syncthing = "refresh-cw",
-	themegallery = "palette", updater = "download", usb = "usb",
+	themegallery = "palette", updater = "download", usb = "usb", zitch = "shopping-bag",
 	aestheticspruce = "moon-star",
 }
 
@@ -60,7 +60,8 @@ glyphs.names = {
 	dos = "DOS", dsi = "DSi", easyrpg = "EasyRPG", fairchild = "Channel F", fake08 = "FAKE-08", fbneo = "FBNEO",
 	fc = "NES", fds = "Famicom Disk System",
 	ffplay = "Video", gametank = "Game Tank", gba = "Game Boy Advance", gbc = "Game Boy Color", gb = "Game Boy",
-	gg = "Game Gear", gw = "Game & Watch", itv = "Intellivision", j2me = "J2ME", jaguar = "Jaguar", lynx = "Lynx",
+	gg = "Game Gear", gw = "Game & Watch", itv = "Intellivision", j2me = "J2ME", jaguar = "Jaguar", loopy = "Loopy",
+	lynx = "Lynx",
 	mame = "MAME", md = "Genesis", megaduck = "Mega Duck", ["mkxp-z"] = "MKXP-Z", ms = "Master System",
 	msu1 = "MSU-1", msumd = "MSU-MD", msx = "MSX", n64 = "Nintendo 64", naomi = "Naomi", nds = "Nintendo DS",
 	neocd = "Neo Geo CD", neogeo = "Neo Geo", ngpc = "Neo Geo Pocket Color", ngp = "Neo Geo Pocket",

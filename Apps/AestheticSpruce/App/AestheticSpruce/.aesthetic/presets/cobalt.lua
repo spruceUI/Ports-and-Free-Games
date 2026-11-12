@@ -1,6 +1,6 @@
--- Theme preset: Blue gradient and white wordmark from the Sega Genesis startup screen
+-- Theme preset: Deep cobalt blue gradient and white, after the Sega startup screen
 return {
-	themeName = "Genesis",
+	themeName = "Cobalt",
 	fontFamily = "Retro Pixel",
 	fontSize = "Default",
 	homeScreenLayout = "Grid",

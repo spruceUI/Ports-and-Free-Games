@@ -20,6 +20,8 @@ local headerInstance = Header:new({ title = "spruceOS Options" })
 local controlHintsInstance
 
 local SHOWN = { "Hidden", "Shown" }
+local TOPBAR = { "Screen Name", "Game Name" }
+local FIT = { "Fit", "Zoom" }
 local SCREENSAVER = { "Off", "1 min", "5 min", "10 min", "30 min" }
 local SCREENSAVER_MINUTES = { 0, 1, 5, 10, 30 }
 
@@ -32,6 +34,10 @@ spruceOptions.ROWS = {
 	{ key = "showCollections", text = "Collections Tile", options = SHOWN, bool = true },
 	{ key = "showFavorites", text = "Favorites Tile", options = SHOWN, bool = true },
 	{ key = "showIndex", text = "Index Counter", options = SHOWN, bool = true },
+	{ key = "showVolumeNumber", text = "Volume Number", options = SHOWN, bool = true },
+	{ key = "topBarShowsGame", text = "Top Bar Text", options = TOPBAR, bool = true, trueOption = "Game Name" },
+	{ key = "fullScreenGridFit", text = "Full Screen Art", options = FIT },
+	{ key = "showMainMenuTitle", text = "Main Menu Title", options = SHOWN, bool = true },
 	{ key = "screensaverMinutes", text = "Screensaver", options = SCREENSAVER, minutes = true },
 }
 
@@ -57,7 +63,7 @@ end
 
 local function stateValueFor(row, option)
 	if row.bool then
-		return option == "Shown"
+		return option == (row.trueOption or "Shown")
 	elseif row.minutes then
 		for i, label in ipairs(SCREENSAVER) do
 			if label == option then

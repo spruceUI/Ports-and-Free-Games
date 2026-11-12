@@ -20,17 +20,32 @@ local function withAlpha(c, a)
 	return { c[1], c[2], c[3], a or 1 }
 end
 
+-- A ramp built on the CPU, not a vertex-coloured mesh: the GPU interpolation missed both declared
+-- endpoints (#1B2430 came out 24,34,47 on a Brick Pro), while this hits the chosen hex exactly.
+local function gradientRamp(horizontal, from, to)
+	local steps = 256
+	local data = love.image.newImageData(horizontal and steps or 1, horizontal and 1 or steps)
+	data:mapPixel(function(x, y)
+		local t = (horizontal and x or y) / (steps - 1)
+		return from[1] + (to[1] - from[1]) * t,
+			from[2] + (to[2] - from[2]) * t,
+			from[3] + (to[3] - from[3]) * t,
+			1
+	end)
+	local image = love.graphics.newImage(data)
+	image:setFilter("linear", "linear")
+	return image
+end
+
 -- Draw the theme background (solid or gradient) into the current canvas
 function skinRenderer.drawBackground(width, height)
 	local bg = colorFor("background")
 	if state.backgroundType == "Gradient" then
-		local mesh = imageGenerator.createGradientMesh(
-			state.backgroundGradientDirection or "Vertical",
-			bg,
-			colorFor("backgroundGradient")
-		)
+		local horizontal = (state.backgroundGradientDirection or "Vertical") == "Horizontal"
+		local ramp = gradientRamp(horizontal, bg, colorFor("backgroundGradient"))
+		local rw, rh = ramp:getDimensions()
 		love.graphics.setColor(1, 1, 1, 1)
-		love.graphics.draw(mesh, 0, 0, 0, width, height)
+		love.graphics.draw(ramp, 0, 0, 0, width / rw, height / rh)
 	else
 		love.graphics.setColor(bg)
 		love.graphics.rectangle("fill", 0, 0, width, height)
@@ -123,11 +138,11 @@ end
 
 -- Encode the current canvas to a PNG file (straight alpha; see imageGenerator.unpremultiply)
 local function saveCanvas(canvas, path, opaque, bleed)
-	local pngData = imageGenerator.encodeCanvas(canvas, opaque, bleed)
-	if not pngData then
+	local png = imageGenerator.encodeCanvas(canvas, opaque, bleed)
+	if not png then
 		return fail("Failed to encode PNG for " .. path)
 	end
-	return system.writeFile(path, pngData:getString())
+	return system.writeFile(path, png)
 end
 
 -- Render one named asset to outDir/<name>.png at the size the reference theme uses

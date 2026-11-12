@@ -16,7 +16,8 @@ local logger = require("utils.logger")
 local iconRenderer = {}
 
 -- App icons not in the SPRUCE reference set but worth theming (keyed by the app's config.json icon name)
-iconRenderer.EXTRA_APP_ICONS = { "aestheticspruce", "songo", "cheevos" }
+-- (cheevos left this list once SPRUCE shipped its own tile)
+iconRenderer.EXTRA_APP_ICONS = { "aestheticspruce", "songo" }
 -- Systems SPRUCE ships no icon for (keyed by the Emu config.json icon name); sized like the others.
 -- Empty since SPRUCE 4.5 (coco, j2me, pc98 gained art); kept for the next system that ships without any.
 iconRenderer.EXTRA_SYSTEM_ICONS = {}
@@ -192,7 +193,7 @@ local function renderTileFile(path, opts)
 	if not pngData then
 		return fail("Failed to encode icon " .. path)
 	end
-	return system.writeFile(path, pngData:getString())
+	return system.writeFile(path, pngData)
 end
 
 local function sortedKeys(t)
@@ -314,7 +315,7 @@ local function renderArtTileFile(path, id, resolution, selectedVariant, dims, mo
 	convert(imageData, bg, fg, selectedVariant and 1 or ART_DIM)
 	local pngData
 	if imageData:getWidth() == dims[1] and imageData:getHeight() == dims[2] then
-		pngData = imageData:encode("png")
+		pngData = imageGenerator.encodePngRGBA(imageData)
 	else
 		-- the card's SPRUCE differs from skin_spec: fit the art into the tile, top-aligned
 		local image = love.graphics.newImage(imageData)
@@ -336,7 +337,7 @@ local function renderArtTileFile(path, id, resolution, selectedVariant, dims, mo
 	if not pngData then
 		return nil, "Failed to encode icon " .. path
 	end
-	if not system.writeFile(path, pngData:getString()) then
+	if not system.writeFile(path, pngData) then
 		return nil, "Failed to write " .. path
 	end
 	return true

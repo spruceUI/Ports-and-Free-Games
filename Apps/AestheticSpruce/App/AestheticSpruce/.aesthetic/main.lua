@@ -113,7 +113,10 @@ function love.load()
 	display.load()
 	fonts.initializeFonts(state.screenWidth, state.screenHeight)
 	input.load()
-	settings.loadFromFile()
+	if not settings.loadFromFile() then
+		-- First run: size the main menu to this device rather than shipping one fixed set.
+		state.applyMainMenuDefaults()
+	end
 
 	-- Load UI components that require initialization
 	screens = require("screens")

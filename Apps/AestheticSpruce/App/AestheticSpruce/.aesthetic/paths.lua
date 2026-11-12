@@ -60,6 +60,7 @@ paths.SUPPORTED_THEME_RESOLUTIONS = {
 	"640x480", -- A30, Mini, Flip, Zero28, Pixel2, RG35XX-H/Plus/SP/2024, RG28XX
 	"480x800", -- MagicX Zero 40 (portrait)
 	"720x480", -- RG40XX-H/V
+	"720x540", -- A10 Mini V4
 	"720x720", -- RGB30, RG CubeXX
 	"960x720", -- Miniloong Pocket 1
 	"1024x768", -- TrimUI Brick, Brick Pro, MagicX XU20

@@ -11,6 +11,7 @@ local state = require("state")
 local fonts = require("ui.fonts")
 local system = require("utils.system")
 local fail = require("utils.fail")
+local paths = require("paths")
 
 local pyuiConfig = {}
 
@@ -118,6 +119,17 @@ function pyuiConfig.build(width, height)
 		displayBatteryIcon = state.showBattery and true or false,
 		displayBatteryPercent = state.showBattery and true or false,
 		showBottomBarButtons = true,
+		-- SPRUCE sets these three; PyUI defaults the other way, so an unset theme differs from the
+		-- stock one. The volume PICTOGRAMS are a separate gap: PyUI draws them whatever this says.
+		displayVolumeNumbers = state.showVolumeNumber and true or false,
+		setTopBarTextToGameSelection = state.topBarShowsGame and true or false,
+		fullScreenGridGameMenuResizeType = state.fullScreenGridFit == "Zoom" and "ZOOM" or "FIT",
+		-- SPRUCE insets the top-bar text by 60 at the 640x480 base; PyUI's own default is 20, which
+		-- leaves the clock tight against the edge of bar art that came from SPRUCE's geometry.
+		topBarInitialXOffset = px(60, s),
+		-- The grid of THIS resolution set: one row of 4 (5 on 16:9, PyUI's own int(4*multiplier)),
+		-- or SPRUCE's override (2x3 on the Zero 40); rows and the text offset are added below
+		mainMenuColCount = (state.mainMenuGrid(width, height)),
 		recentsEnabled = state.showRecents and true or false,
 		favoritesEnabled = state.showFavorites and true or false,
 		collectionsEnabled = state.showCollections and true or false,
@@ -125,10 +137,32 @@ function pyuiConfig.build(width, height)
 		settingsEnabled = true,
 	}
 
+	-- Set only when hiding: PyUI falls back to its own title when the key is absent, so "" is the
+	-- only way to suppress it (SPRUCE ships ""). Not written inline, because `a and nil or ""`
+	-- yields "" for BOTH branches in Lua and would hide the title unconditionally.
+	if not state.showMainMenuTitle then
+		cfg.mainMenuTitle = ""
+	end
+
 	if (state.boxArtWidth or 0) > 0 then
 		local w = px(state.boxArtWidth, s)
 		cfg.listGameSelectImgWidth = w
 		cfg.listGameSelectImgHeight = w
+	end
+
+	-- The base set leaves the grid to PyUI, as SPRUCE's config.json does: PyUI reads it on 640x480
+	-- (its default there is 4) and patches it for panels without their own set, where int(4*multiplier)
+	-- fits the real panel. Rows and the text offset only where SPRUCE writes them.
+	if string.format("%dx%d", width, height) == paths.BASE_RESOLUTION then
+		cfg.mainMenuColCount = nil
+	else
+		local _, menuRows, textYOffset = state.mainMenuGrid(width, height)
+		if menuRows ~= 1 then
+			cfg.mainMenuRowCount = menuRows
+		end
+		if textYOffset then
+			cfg.multiRowGridTextYOffset = textYOffset
+		end
 	end
 
 	local systemGrid = SYSTEM_GRID[string.format("%dx%d", width, height)]
