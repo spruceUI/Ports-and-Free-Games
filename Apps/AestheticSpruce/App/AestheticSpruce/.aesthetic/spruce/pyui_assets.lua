@@ -16,7 +16,7 @@
 ---   tile        main-menu tile: a square plate with a pictogram in the TOP of the image; the bottom
 ---               band stays transparent because PyUI draws the label there (grid_view.py y_text =
 ---               310/480 of the screen); the focused variant inverts the colours
-return {
+local assets = {
 	-- full = true: sized to the screen, not to SPRUCE's file (SPRUCE ships a 960x720 background in
 	-- its 1280x720 set; PyUI's ThemePatcher rule, which spruce's prebake --check enforces, is WxH)
 	["background"] = { kind = "background", full = true },
@@ -92,3 +92,17 @@ return {
 	["ic-retroarch-n"] = { kind = "tile", icon = "lucide/glyph/joystick" },
 	["ic-retroarch-f"] = { kind = "tile", icon = "lucide/glyph/joystick", focused = true },
 }
+
+-- Volume indicator: PyUI asks for icon-volume-00..20 by level (theme.py:483) and the top bar
+-- draws it whenever the volume changed in the last 3 seconds, so a theme without these 21 files
+-- leaves a hole there. Four Lucide glyphs cover the range; 00 is the muted one.
+for level = 0, 20 do
+	local glyph = (level == 0 and "volume-x")
+		or (level <= 6 and "volume")
+		or (level <= 13 and "volume-1")
+		or "volume-2"
+	assets[string.format("icon-volume-%02d", level)] =
+		{ kind = "pictogram", icon = "lucide/glyph/" .. glyph, scale = 0.8 }
+end
+
+return assets

@@ -1,6 +1,6 @@
 --- Theme creation (spruceOS / PyUI output)
 ---
---- Output layout (see DEVELOPMENT.md §1 and §5):
+--- Output layout (see docs/DEVELOPMENT.md §1 and §5):
 ---   <Themes>/<Name>/config.json + skin/ + icons/            base set, always 640x480
 ---   <Themes>/<Name>/config_<W>x<H>.json + skin_<W>x<H>/ + icons_<W>x<H>/   per extra resolution
 ---   <Themes>/<Name>/<font>.ttf, preview.png, README.md
@@ -34,9 +34,9 @@ function themeCreator.sanitizeName(name)
 end
 
 -- Which resolution sets to generate: always the base set, plus the device's own size when it
--- differs and SPRUCE gives reference sizes for it, plus everything when state.allResolutions is
--- set. A size SPRUCE has no set for (the Zero40's 480x800 portrait panel) gets the base set only,
--- which PyUI's ThemePatcher scales on the device, as it does for SPRUCE itself.
+-- differs and SPRUCE has a skin set for it, plus everything when state.allResolutions is set.
+-- A size SPRUCE has no skin set for gets the base set only, which PyUI's ThemePatcher scales on
+-- the device, as it does for SPRUCE itself.
 function themeCreator.targetResolutions()
 	local native = string.format("%dx%d", state.screenWidth, state.screenHeight)
 	local list = { paths.BASE_RESOLUTION }
@@ -47,7 +47,7 @@ function themeCreator.targetResolutions()
 			end
 		end
 	elseif native ~= paths.BASE_RESOLUTION then
-		if skinSpec.skin[native] and skinSpec.icons[native] then
+		if skinSpec.skin[native] then
 			list[#list + 1] = native
 		else
 			logger.info("No SPRUCE reference set for " .. native .. "; building the base set only")
@@ -79,6 +79,11 @@ local function writeCredits()
 		"",
 		"Font: " .. tostring(state.fontFamily) .. " (see the licence next to the font in the app's assets/fonts)",
 		"Icons: Lucide (ISC), Kenney Input Prompts (CC0)",
+		"",
+		"Accent Color (spruce's App/AccentColor) is not supported by this theme and never will be:",
+		"it needs an accent/ folder of recolour templates, which Aesthetic does not generate. The",
+		"app detects that and declines, which is the expected outcome. If the folder is added by",
+		"hand the result is undefined and unsupported - rebuild in Aesthetic to change colours.",
 		(state.systemIcons and (state.systemIconStyle == "SPRUCE Art" or state.systemIconStyle == "SPRUCE Mono"))
 				and (
 					"System icons: art from spruceOS's SPRUCE theme by tenlevels (MIT), recoloured in "
@@ -132,7 +137,9 @@ function themeCreator.createThemeCoroutine()
 					return false, err
 				end
 
-				if state.systemIcons then
+				-- SPRUCE keeps no icons_<W>x<H> where its icons/ set fits (480x800, 720x480):
+				-- PyUI then reads icons/, so emit none either
+				if state.systemIcons and (res == paths.BASE_RESOLUTION or skinSpec.icons[res]) then
 					coroutine.yield("Rendering icons " .. res .. "...")
 					local iconsDir = paths.getThemeIconsDir(width, height)
 					ok, err = iconRenderer.renderIcons(width, height, iconsDir, function(name)

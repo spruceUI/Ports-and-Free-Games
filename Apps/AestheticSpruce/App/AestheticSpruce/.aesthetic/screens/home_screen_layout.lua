@@ -42,6 +42,9 @@ local function handleOptionCycle(button, direction)
 		return false
 	end
 	state.homeScreenLayout = button:getCurrentOption()
+	-- The tile set that fits differs per layout, so re-apply the defaults for the new one. The
+	-- Spruce Options rows show the result immediately and can still be changed by hand.
+	state.applyMainMenuDefaults()
 	return true
 end
 
@@ -75,6 +78,9 @@ function homeScreenLayout.update(dt)
 		local button = menuList.items[1]
 		if button and button.getCurrentOption then
 			state.homeScreenLayout = button:getCurrentOption()
+	-- The tile set that fits differs per layout, so re-apply the defaults for the new one. The
+	-- Spruce Options rows show the result immediately and can still be changed by hand.
+	state.applyMainMenuDefaults()
 		end
 	end
 	if InputManager.isActionPressed(InputManager.ACTIONS.CANCEL) then

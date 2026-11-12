@@ -1,6 +1,6 @@
--- Theme preset: Deep berry and white from the Game Boy Color's translucent Berry shell
+-- Theme preset: Deep berry pink and white, after the Game Boy Color's translucent Berry shell
 return {
-	themeName = "GBC",
+	themeName = "Berry",
 	fontFamily = "Retro Pixel",
 	fontSize = "Default",
 	homeScreenLayout = "Grid",

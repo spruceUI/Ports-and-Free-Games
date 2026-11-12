@@ -98,6 +98,53 @@ function imageGenerator.bleedTransparent(imageData, color)
 	return imageData
 end
 
+-- PNG writer, 8-bit RGBA, one chunk, no interlacing. LOVE's own encode() hands images with 256
+-- colours or fewer to lodepng's palette path, and some device image loaders (a TrimUI Brick Pro,
+-- spruce 4.5.5) render those indexed files wrong: a red-to-blue ramp came out red, black, blue.
+local CRC_TABLE
+local function crc32(bytes, crc)
+	if not CRC_TABLE then
+		CRC_TABLE = {}
+		for i = 0, 255 do
+			local c = i
+			for _ = 1, 8 do
+				if c % 2 == 1 then
+					c = bit.bxor(bit.rshift(c, 1), 0xEDB88320)
+				else
+					c = bit.rshift(c, 1)
+				end
+			end
+			CRC_TABLE[i] = c
+		end
+	end
+	crc = bit.bxor(crc or 0, 0xFFFFFFFF)
+	for i = 1, #bytes do
+		crc = bit.bxor(CRC_TABLE[bit.band(bit.bxor(crc, bytes:byte(i)), 0xFF)], bit.rshift(crc, 8))
+	end
+	return bit.bxor(crc, 0xFFFFFFFF)
+end
+
+local function chunk(kind, body)
+	return love.data.pack("string", ">I4", #body) .. kind .. body
+		.. love.data.pack("string", ">I4", crc32(kind .. body) % 0x100000000)
+end
+
+--- PNG bytes for an ImageData, always truecolour with alpha
+function imageGenerator.encodePngRGBA(imageData)
+	local w, h = imageData:getDimensions()
+	local raw = imageData:getString()
+	local stride = w * 4
+	local rows = {}
+	for y = 0, h - 1 do
+		rows[y + 1] = "\0" .. raw:sub(y * stride + 1, (y + 1) * stride)
+	end
+	local header = love.data.pack("string", ">I4I4BBBBB", w, h, 8, 6, 0, 0, 0)
+	return "\137PNG\r\n\26\n"
+		.. chunk("IHDR", header)
+		.. chunk("IDAT", love.data.compress("string", "zlib", table.concat(rows)))
+		.. chunk("IEND", "")
+end
+
 -- Encode a canvas to straight-alpha PNG bytes (see unpremultiply); `opaque` skips the fix-ups,
 -- `bleed` (a colour) is written into the transparent pixels
 function imageGenerator.encodeCanvas(canvas, opaque, bleed)
@@ -108,9 +155,9 @@ function imageGenerator.encodeCanvas(canvas, opaque, bleed)
 			imageGenerator.bleedTransparent(imageData, bleed)
 		end
 	end
-	local pngData = imageData:encode("png")
+	local png = imageGenerator.encodePngRGBA(imageData)
 	imageData:release()
-	return pngData
+	return png
 end
 
 -- Create a gradient mesh usable for various UI elements
@@ -220,13 +267,13 @@ function imageGenerator.createPreviewImage(outputPath, width, height, text)
 
 	-- Get image data and encode as PNG
 	local imageData = canvas:newImageData()
-	local pngData = imageData:encode("png")
+	local pngData = imageGenerator.encodePngRGBA(imageData)
 	if not pngData then
 		return fail("Failed to encode preview image to PNG")
 	end
 
 	-- Save to file
-	return system.writeFile(outputPath, pngData:getString())
+	return system.writeFile(outputPath, pngData)
 end
 
 return imageGenerator
