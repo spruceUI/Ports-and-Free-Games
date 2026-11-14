@@ -1,0 +1,32 @@
+{
+  "display": "RetroShelf",
+  "shortname": "",
+  "description": "Sync your play sessions to retroshelf.org",
+  "requires_files": false,
+  "hidden": false,
+  "devices": [
+    "ANBERNIC_RGXX",
+    "MAGICX_ZERO28",
+    "MAGICX_ZERO40",
+    "MAGICX_XU20",
+    "MAGICX_XU_MINI_M",
+    "MINILOONG_POCKET1",
+    "MIYOO_A30",
+    "MIYOO_FLIP",
+    "MIYOO_MINI_PLUS",
+    "MIYOO_MINI_FLIP",
+    "RGB30",
+    "RGB20SX",
+    "POWKIDDY_V90S",
+    "TRIMUI_BRICK",
+    "TRIMUI_BRICK_PRO",
+    "TRIMUI_SMART_PRO",
+    "TRIMUI_SMART_PRO_S",
+    "A10MINI",
+    "A10MINIV4",
+    "RG353M",
+    "E5PLUS",
+    "POWKIDDY_V20"
+  ],
+  "min_cfw_version": "4.5.0"
+}
