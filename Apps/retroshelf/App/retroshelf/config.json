@@ -1,0 +1,7 @@
+{
+  "label": "retroshelf",
+  "icon": "icons/retroshelf.png",
+  "launch": "launch.sh",
+  "description": "Sync play sessions to retroshelf",
+  "hideInSimpleMode": false
+}

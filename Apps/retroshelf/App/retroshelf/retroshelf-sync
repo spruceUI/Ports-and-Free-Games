@@ -1,0 +1,27 @@
+#!/bin/sh
+
+set -eu
+
+DIR="$(CDPATH= cd "$(dirname "$0")" && pwd)"
+PLATFORM="${PLATFORM:-}"
+
+if [ -z "$PLATFORM" ]; then
+  PLATFORM="MiyooMini"
+fi
+
+unset LD_LIBRARY_PATH
+
+case "$PLATFORM" in
+  A30|MiyooMini)
+    exec "$DIR/retroshelf-sync32" "$@"
+    ;;
+  Brick|BrickPro|SmartPro|SmartProS|Pixel2|Flip|Zero28|Zero40|XU20|AnbernicRG28XX|AnbernicRGCubeXX|AnbernicXX*)
+    exec "$DIR/retroshelf-sync64" "$@"
+    ;;
+  *)
+    warning="Unknown Spruce platform: '${PLATFORM:-<empty>}'"
+    echo "$warning" >&2
+    echo "$warning" >> "$DIR/retroshelf.log" 2>/dev/null || true
+    exec "$DIR/retroshelf-sync64" "$@"
+    ;;
+esac
